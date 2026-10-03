@@ -1,0 +1,29 @@
+{
+  "name": "Muhammad Daniyal Tallat — Software Engineer",
+  "short_name": "Daniyal",
+  "description": "Portfolio of Muhammad Daniyal Tallat — Full Stack Software Engineer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a2332",
+  "theme_color": "#264653",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/mylogo/MFI-Black.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/mylogo/MFI-Black.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/mylogo/MFI-Black.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "web development"]
+}

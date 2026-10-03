@@ -1,0 +1,28 @@
+📧 EMAILJS SETUP - GET YOUR PUBLIC KEY
+
+🔑 STEP 1: Get Your Public Key
+1. Go to: https://dashboard.emailjs.com/admin/account
+2. Login to your EmailJS account
+3. Find "Public Key" section
+4. Copy your Public Key
+
+🔧 STEP 2: Update Your Code
+1. Open: src/components/Contact.jsx
+2. Find line 31: const publicKey = 'YOUR_PUBLIC_KEY'
+3. Replace 'YOUR_PUBLIC_KEY' with your actual public key
+4. Save the file
+
+✅ STEP 3: Test
+1. Run: npm run dev
+2. Fill out contact form
+3. Submit and check for success message
+
+🎉 DONE!
+Your contact form will now send real emails!
+
+📧 Current Configuration:
+- Service ID: service_e3mg9bl ✅
+- Template ID: template_b8exa6y ✅
+- Public Key: NEEDS TO BE ADDED ❌
+
+💡 TIP: Your public key looks like: user_xxxxxxxxxxxxxxxx

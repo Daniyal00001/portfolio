@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/faheem506pk/CV/logs/.c16dec9d373e92c591171b0169cc2f8714a7ed79-audit.json",
+    "files": [
+        {
+            "date": 1790504612611,
+            "name": "/home/faheem506pk/CV/logs/mcp-puppeteer-2026-09-27.log",
+            "hash": "eafc570f8ea7c5fb5ce98455b865927bb0a485fd7b35a8c12d05cc4f579c4492"
+        }
+    ],
+    "hashType": "sha256"
+}
