@@ -14,6 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Plus, Trash2 } from "lucide-react";
+import { AssetField } from "@/components/admin/asset-field";
 
 export function ExperienceModal({
   open,
@@ -31,6 +33,8 @@ export function ExperienceModal({
     description: "",
     skills: "", // Comma separated string for input
     logo_url: "",
+    company_url: "",
+    links: [],
     is_development: true,
   });
 
@@ -42,6 +46,10 @@ export function ExperienceModal({
                 ...initialData,
                 is_development: initialData.is_development !== false,
                 skills: initialData.skills && Array.isArray(initialData.skills) ? initialData.skills.join(", ") : "",
+                company_url: initialData.company_url || "",
+                links: Array.isArray(initialData.links)
+                  ? initialData.links.map((link) => ({ label: link.label || "", url: link.url || "" }))
+                  : [],
             });
         } else {
             // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,6 +62,8 @@ export function ExperienceModal({
                 description: "",
                 skills: "",
                 logo_url: "",
+                company_url: "",
+                links: [],
                 is_development: true,
             });
         }
@@ -70,6 +80,10 @@ export function ExperienceModal({
     onSubmit({
       ...formData,
       skills: skillsArray,
+      company_url: (formData.company_url || "").trim(),
+      links: (formData.links || [])
+        .map((link) => ({ label: link.label.trim(), url: link.url.trim() }))
+        .filter((link) => link.label && link.url),
     });
   };
 
@@ -144,17 +158,13 @@ export function ExperienceModal({
             />
           </div>
 
-           <div className="space-y-2">
-            <Label htmlFor="logo_url">Logo URL</Label>
-            <Input
-              id="logo_url"
-              placeholder="https://..."
-              value={formData.logo_url || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, logo_url: e.target.value })
-              }
-            />
-          </div>
+          <AssetField
+            label="Company logo"
+            hint="Shown beside this role. Upload a square mark if you can."
+            value={formData.logo_url || ""}
+            folder="experience"
+            onChange={(logo_url) => setFormData({ ...formData, logo_url })}
+          />
 
           <div className="space-y-2">
             <Label htmlFor="skills">Skills (comma separated)</Label>
@@ -169,10 +179,83 @@ export function ExperienceModal({
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="company_url">Company link</Label>
+            <Input
+              id="company_url"
+              placeholder="https://..."
+              value={formData.company_url || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, company_url: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Bullet links</Label>
+            <p className="text-xs text-muted-foreground">
+              The label must match the start of a bullet, such as Agents Anywhere or GCU LMS.
+            </p>
+            <div className="space-y-2">
+              {(formData.links || []).map((link, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <Input
+                    value={link.label}
+                    placeholder="Label"
+                    aria-label={`Link ${index + 1} label`}
+                    onChange={(e) => {
+                      const links = [...formData.links]
+                      links[index] = { ...link, label: e.target.value }
+                      setFormData({ ...formData, links })
+                    }}
+                  />
+                  <Input
+                    value={link.url}
+                    placeholder="https://..."
+                    aria-label={`Link ${index + 1} URL`}
+                    onChange={(e) => {
+                      const links = [...formData.links]
+                      links[index] = { ...link, url: e.target.value }
+                      setFormData({ ...formData, links })
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="shrink-0 text-destructive"
+                    aria-label={`Remove link ${index + 1}`}
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        links: formData.links.filter((_, i) => i !== index),
+                      })
+                    }
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() =>
+                setFormData({
+                  ...formData,
+                  links: [...(formData.links || []), { label: "", url: "" }],
+                })
+              }
+            >
+              <Plus className="mr-2 h-4 w-4" /> Add link
+            </Button>
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
-              className="min-h-[100px]"
+              className="min-h-[140px]"
+              placeholder="One bullet per paragraph. Leave a blank line between bullets."
               value={formData.description}
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })

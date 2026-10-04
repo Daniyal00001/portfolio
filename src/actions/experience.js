@@ -32,6 +32,8 @@ export async function saveExperienceAction(formData, id = null) {
       p_skills: Array.isArray(cleanData.skills) ? cleanData.skills : [],
       p_logo_url: cleanData.logo_url || "",
       p_is_development: cleanData.is_development !== false,
+      p_company_url: cleanData.company_url || "",
+      p_links: Array.isArray(cleanData.links) ? cleanData.links : [],
     });
 
     if (error) {

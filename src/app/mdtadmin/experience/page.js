@@ -26,7 +26,7 @@ export default function AdminExperiencePage() {
     setLoading(true);
     const { data, error } = await supabase
       .from("experience")
-      .select("id, company, position, location, description, duration, start_date, end_date, type, skills, logo_url, created_at")
+      .select("id, company, position, location, description, duration, start_date, end_date, type, skills, logo_url, company_url, links, is_development, created_at")
       .order("id", { ascending: true });
 
     if (error) console.error("Error fetching experience:", error);
@@ -112,7 +112,11 @@ export default function AdminExperiencePage() {
               <div className="flex flex-col md:flex-row justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex items-start gap-3">
+                      {exp.logo_url ? (
+                        <img src={exp.logo_url} alt="" className="h-12 w-12 shrink-0 rounded-md border border-border bg-white object-contain p-0.5" />
+                      ) : null}
+                      <div>
                       <div className="flex items-center gap-2">
                         <h3 className="text-xl font-bold">{exp.position}</h3>
                         {exp.is_development !== false ? (
@@ -126,6 +130,7 @@ export default function AdminExperiencePage() {
                         )}
                       </div>
                       <p className="text-lg text-primary font-medium">{exp.company}</p>
+                      </div>
                     </div>
                   </div>
 
@@ -155,7 +160,6 @@ export default function AdminExperiencePage() {
                     </div>
                   )}
 
-                  {exp.logo_url && <div className="mt-2 text-xs text-muted-foreground break-all">Logo: {exp.logo_url}</div>}
                 </div>
 
                 <div className="flex md:flex-col gap-2 justify-start md:border-l md:pl-4 border-border/50">
