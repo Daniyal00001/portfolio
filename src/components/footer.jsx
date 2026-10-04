@@ -18,7 +18,7 @@ const socials = [
   { label: "LinkedIn", href: Mydata.Socials.LinkedIn, icon: Linkedin },
   { label: "Medium", href: Mydata.Socials.Medium, icon: SiMedium },
   { label: "Email", href: `mailto:${Mydata.Email}`, icon: Mail },
-]
+].filter((item) => item.href)
 
 export function Footer() {
   return (

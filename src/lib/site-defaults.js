@@ -1,38 +1,39 @@
 import {
   siReact,
   siNextdotjs,
+  siAngular,
   siTypescript,
-  siJavascript,
   siNodedotjs,
   siPython,
+  siDjango,
   siTailwindcss,
-  siPostgresql,
-  siSupabase,
-  siFirebase,
+  siMysql,
+  siMongodb,
+  siRedis,
+  siDocker,
   siGit,
-  siFigma,
 } from "simple-icons"
 
 // Current public copy. The admin Website screen overrides any of these.
 export const DEFAULT_CONTENT = {
-  location: "Islamabad, PK",
+  location: "Lahore, Pakistan",
   availability: "Available to Work",
   viewProjects: "View Projects",
   downloadCv: "Download CV",
   experienceStat: "Experience:",
   projectsStat: "Projects:",
   stackStat: "Stack:",
-  stackValue: "MERN / Next.js",
-  logoLight: "/assets/mylogo/MFI-Black.png",
-  logoDark: "/assets/mylogo/MFI-White.png",
-  portraitFallback: "/assets/images/faheem506pk-2026.jpg",
-  resumeFallback: "/assets/PDF/CV/Muhammad_Faheem_Iqbal_CV.pdf",
-  mediumUrl: "https://faheem506pk.medium.com/",
+  stackValue: "React / Node.js",
+  logoLight: "/assets/mylogo/MDT-Black.png",
+  logoDark: "/assets/mylogo/MDT-White.png",
+  portraitFallback: "/assets/images/daniyal-2026.jpg",
+  resumeFallback: "/assets/PDF/CV/Muhammad_Daniyal_Tallat_CV.pdf",
+  mediumUrl: "",
   techEyebrow: "Stack",
   techTitle: "Technologies I build with",
   techBody:
     "The tools I reach for in production, across the front end, the back end and everything that ships them.",
-  techs: "React\nNext.js\nTypeScript\nJavaScript\nNode.js\nPython\nTailwind\nPostgreSQL\nSupabase\nFirebase\nGit\nFigma",
+  techs: "React\nNext.js\nAngular\nTypeScript\nNode.js\nPython\nDjango\nTailwind\nMySQL\nMongoDB\nRedis\nDocker\nGit",
   skillsTitle: "Technical Expertise",
   skillsBody: "The stack I build with, and the tools around it. Drag the stack to spin it.",
   skillsPageTitle: "Technical Expertise",
@@ -57,8 +58,8 @@ export const DEFAULT_CONTENT = {
     "I'm always interested in new opportunities, collaborations, or just a chat about technology. Feel free to reach out via the form or my social channels.",
   contactPageTitle: "Get in Touch",
   contactPageBody: "Have a project in mind or want to discuss collaboration? I'd love to hear from you.",
-  phone: "+92 332 5194976",
-  whatsappUrl: "https://wa.me/923325194976",
+  phone: "+92 316 4257645",
+  whatsappUrl: "https://wa.me/923164257645",
   whatsappLabel: "Start a Chat",
   responseTime: "Usually within 24 hours",
 }
@@ -66,22 +67,43 @@ export const DEFAULT_CONTENT = {
 const NAMED_ICONS = [
   { name: "React", icon: siReact },
   { name: "Next.js", icon: siNextdotjs, darkHex: "FFFFFF" },
+  { name: "Angular", icon: siAngular },
   { name: "TypeScript", icon: siTypescript },
-  { name: "JavaScript", icon: siJavascript },
   { name: "Node.js", icon: siNodedotjs },
   { name: "Python", icon: siPython },
+  { name: "Django", icon: siDjango },
   { name: "Tailwind", icon: siTailwindcss },
-  { name: "PostgreSQL", icon: siPostgresql },
-  { name: "Supabase", icon: siSupabase },
-  { name: "Firebase", icon: siFirebase },
+  { name: "MySQL", icon: siMysql },
+  { name: "MongoDB", icon: siMongodb },
+  { name: "Redis", icon: siRedis },
+  { name: "Docker", icon: siDocker },
   { name: "Git", icon: siGit, darkHex: "FFFFFF" },
-  { name: "Figma", icon: siFigma },
 ]
 
 const ICON_BY_NAME = Object.fromEntries(NAMED_ICONS.map((item) => [item.name.toLowerCase(), item]))
 
+const REPLACED_CONTENT = {
+  location: new Set(["Islamabad, PK", "Islamabad, Pakistan", "Khanna Pul, Islamabad, Pakistan"]),
+  phone: new Set(["+92 332 5194976", "+923325194976", "+92 (332) 5194976"]),
+  whatsappUrl: new Set(["https://wa.me/923325194976"]),
+  stackValue: new Set(["MERN / Next.js"]),
+  techs: new Set([
+    "React\nNext.js\nTypeScript\nJavaScript\nNode.js\nPython\nTailwind\nPostgreSQL\nSupabase\nFirebase\nGit\nFigma",
+  ]),
+}
+
 export function mergeContent(stored) {
-  return { ...DEFAULT_CONTENT, ...(stored || {}) }
+  const merged = { ...DEFAULT_CONTENT, ...(stored || {}) }
+  if (!merged.logoLight || String(merged.logoLight).includes("MFI-")) {
+    merged.logoLight = DEFAULT_CONTENT.logoLight
+  }
+  if (!merged.logoDark || String(merged.logoDark).includes("MFI-")) {
+    merged.logoDark = DEFAULT_CONTENT.logoDark
+  }
+  for (const key of Object.keys(REPLACED_CONTENT)) {
+    if (REPLACED_CONTENT[key].has(merged[key])) merged[key] = DEFAULT_CONTENT[key]
+  }
+  return merged
 }
 
 // One entry per line. Optional image: Name|https://...

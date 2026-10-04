@@ -17,8 +17,8 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { icon: FaGithub, url: 'https://github.com/faheem506pk', label: 'GitHub', gradient: 'from-gray-700 to-gray-900' },
-    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/faheem506pk/', label: 'LinkedIn', gradient: 'from-blue-600 to-blue-800' },
+    { icon: FaGithub, url: 'https://github.com/Daniyal00001', label: 'GitHub', gradient: 'from-gray-700 to-gray-900' },
+    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/', label: 'LinkedIn', gradient: 'from-blue-600 to-blue-800' },
     { icon: FaEnvelope, url: `mailto:${Mydata.Email}`, label: 'Email', gradient: 'from-pink-500 to-rose-600' }
   ]
 
@@ -140,8 +140,8 @@ const Footer = () => {
               
               {/* Download CV Button */}
               <a
-                href="/cv/Muhammad_Faheem_Iqbal_CV.pdf"
-                download="Muhammad_Faheem_Iqbal_Resume.pdf"
+                href="/cv/Muhammad_Daniyal_Tallat_CV.pdf"
+                download="Muhammad_Daniyal_Tallat_Resume.pdf"
                 className="mt-4 inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg text-sm font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
               >
                 <FaDownload className="w-4 h-4" />

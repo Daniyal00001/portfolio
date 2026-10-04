@@ -98,8 +98,8 @@ const Navigation = ({ activeSection }) => {
               </button>
             ))}
             <a
-              href="/cv/Muhammad_Faheem_Iqbal_CV.pdf"
-              download="Muhammad_Faheem_Iqbal_Resume.pdf"
+              href="/cv/Muhammad_Daniyal_Tallat_CV.pdf"
+              download="Muhammad_Daniyal_Tallat_Resume.pdf"
               className="ml-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center space-x-2"
             >
               <FaDownload className="w-3 h-3" />
@@ -142,8 +142,8 @@ const Navigation = ({ activeSection }) => {
                 </button>
               ))}
               <a
-                href="/cv/Muhammad_Faheem_Iqbal_CV.pdf"
-                download="Muhammad_Faheem_Iqbal_Resume.pdf"
+                href="/cv/Muhammad_Daniyal_Tallat_CV.pdf"
+                download="Muhammad_Daniyal_Tallat_Resume.pdf"
                 className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium mt-2"
               >
                 <FaDownload className="w-4 h-4" />

@@ -20,7 +20,7 @@ DECLARE
   target_user_id uuid;
 BEGIN
   -- Try to find the user by email
-  SELECT id INTO target_user_id FROM auth.users WHERE email = 'faheemiqbalm@gmail.com' LIMIT 1;
+  SELECT id INTO target_user_id FROM auth.users WHERE email = 'daniyaltallat0@gmail.com' LIMIT 1;
 
   IF target_user_id IS NOT NULL THEN
     -- Delete existing profile to avoid conflict
@@ -43,17 +43,17 @@ BEGIN
       image_url
     ) VALUES (
       target_user_id,
-      'Muhammad Faheem Iqbal',
+      'Muhammad Daniyal Tallat',
       'Software Engineer | Frontend Developer',
       'ReactJS Frontend Developer with over 1 year of experience building scalable, responsive, and user-friendly web applications.',
-      'faheemiqbalm@gmail.com',
+      'daniyaltallat0@gmail.com',
       '+92 (332) 5194976',
       'Khanna Pul, Islamabad, Pakistan',
       'Pakistani',
-      'https://www.linkedin.com/in/faheem506pk/',
-      'https://github.com/faheem506pk',
-      'https://faheem506pk.vercel.app',
-      '/assets/PDF/CV/Muhammad_Faheem_Iqbal_CV.pdf', -- Keeping asset path as requested
+      'https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/',
+      'https://github.com/Daniyal00001',
+      'https://github.com/Daniyal00001',
+      '/assets/PDF/CV/Muhammad_Daniyal_Tallat_CV.pdf', -- Keeping asset path as requested
       '/assets/images/dp.jpg' -- Placeholder, assuming user will upload or has one
     );
   END IF;

@@ -80,19 +80,19 @@ function LoginForm() {
         <Card className="border-border bg-card/90 shadow-2xl backdrop-blur-xl">
           <CardHeader className="space-y-3">
             <div className="flex justify-center">
-              <div className="relative h-14 w-14">
+              <div className="relative h-10 w-28">
                 <Image
-                  src="/assets/mylogo/MFI-Black.png"
-                  alt="MFI"
+                  src="/assets/mylogo/MDT-Black.png"
+                  alt="MDT"
                   fill
-                  sizes="56px"
+                  sizes="112px"
                   className="object-contain dark:hidden"
                 />
                 <Image
-                  src="/assets/mylogo/MFI-White.png"
-                  alt="MFI"
+                  src="/assets/mylogo/MDT-White.png"
+                  alt="MDT"
                   fill
-                  sizes="56px"
+                  sizes="112px"
                   className="hidden object-contain dark:block"
                 />
               </div>

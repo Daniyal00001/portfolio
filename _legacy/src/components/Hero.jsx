@@ -48,7 +48,7 @@ const Hero = () => {
       {/* Animated background pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute bottom-20 right-4 md:right-8 text-purple-400 font-mono text-xs opacity-20 animate-pulse">
-          <div>const dev = "Faheem"</div>
+          <div>const dev = "Daniyal"</div>
         </div>
         <div className="absolute top-1/2 left-1/4 text-pink-400 font-mono text-xs opacity-15">
           <div>function create()</div>
@@ -66,8 +66,8 @@ const Hero = () => {
                   <div className="relative">
                     <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full overflow-hidden profile-frame cursor-pointer">
                       <img 
-                        src="/images/faheem506pk.jpeg" 
-                        alt="Muhammad Faheem Iqbal"
+                        src="/images/daniyal.jpeg" 
+                        alt="Muhammad Daniyal Tallat"
                         className="w-full h-full object-cover profile-image"
                       />
                     </div>
@@ -117,7 +117,7 @@ const Hero = () => {
                 <div className="text-center lg:text-left">
                   <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
                     <SplitText 
-                      text="Muhammad Faheem Iqbal" 
+                      text="Muhammad Daniyal Tallat" 
                       className="gradient-text"
                       delay={0.5}
                       duration={0.8}
@@ -182,8 +182,8 @@ const Hero = () => {
               </AnimatedButton>
               
               <a
-                href="/cv/Muhammad_Faheem_Iqbal_CV.pdf"
-                download="Muhammad_Faheem_Iqbal_Resume.pdf"
+                href="/cv/Muhammad_Daniyal_Tallat_CV.pdf"
+                download="Muhammad_Daniyal_Tallat_Resume.pdf"
                 className="w-full sm:w-auto"
               >
                 <AnimatedButton
@@ -199,7 +199,7 @@ const Hero = () => {
               <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
                 <AnimatedCard className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 glass-card rounded-lg flex items-center justify-center text-slate-300 hover:text-gray-300 transition-colors cursor-pointer">
                   <a
-                    href="https://github.com/faheem506pk"
+                    href="https://github.com/Daniyal00001"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full h-full flex items-center justify-center"
@@ -210,7 +210,7 @@ const Hero = () => {
                 
                 <AnimatedCard className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 glass-card rounded-lg flex items-center justify-center text-slate-300 hover:text-blue-400 transition-colors cursor-pointer">
                   <a
-                    href="https://www.linkedin.com/in/faheem506pk/"
+                    href="https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full h-full flex items-center justify-center"

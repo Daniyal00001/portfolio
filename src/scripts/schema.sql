@@ -113,61 +113,40 @@ TRUNCATE TABLE education RESTART IDENTITY;
 TRUNCATE TABLE skills RESTART IDENTITY;
 
 -- Insert Experience
-INSERT INTO experience (company, position, location, type, duration, skills, description) VALUES
-('MicroMerger (Pvt.) Ltd.', 'Software Engineer', 'Islāmābād, Pakistan · On-site', 'Full-time', 'Jan 2026 - Present', 
- ARRAY['React.js', 'ERP Next', 'Frappe', 'Node.js', 'JavaScript', 'Next.js', 'Git', 'GitHub', 'Linux', 'CLI', 'Bootstrap', 'Tailwind CSS', 'Ant Design', 'Firebase', 'REST APIs', 'MongoDB', 'PostgreSQL'], 
- 'Full-stack development using React.js, Node.js, and Frappe/ERPNext ecosystem.'),
+INSERT INTO experience (company, position, location, type, duration, skills, description, is_development) VALUES
+('Devsinc', 'Software Engineer Intern', 'Lahore, Pakistan', 'Internship', 'Aug 2026 - Present',
+ ARRAY['AWS', 'GitHub Actions', 'CI/CD', 'REST APIs'],
+ 'Contributing to Agents Anywhere, an applied AI platform that helps mid-market and enterprise companies turn their knowledge into AI tools, agents and automated workflows, with human approval on sensitive actions. Built the client intake framework and dossier generation, connectors, plugins, MCP skills and Orbit features, and set up AWS deployment with GitHub Actions CI/CD. Also contributing to VeriCasa, an AI-powered legal-tech platform for real estate agencies, law firms and notaries in the Portuguese and US markets, running 100+ automated legal cross-checks and generating contracts in seconds. Developed full-stack features across document analysis, contract generation and KYC compliance workflows, with REST APIs, encrypted document storage and GDPR-compliant data handling.',
+ true),
 
-('MicroMerger (Pvt.) Ltd.', 'Associate Software Engineer', 'Islāmābād, Pakistan · On-site', 'Full-time', 'Feb 2025 - Jan 2026', 
- ARRAY['React.js', 'Tailwind CSS', 'JavaScript', 'REST APIs', 'PHP', 'Bootstrap', 'WordPress', 'TypeScript', 'Figma', 'Frappe'], 
- 'Frontend development and assisting in ERP Next implementations.'),
-
-('Intern Intelligence', 'Frontend Developer', 'Remote', 'Internship', 'Feb 2025 - Feb 2025', 
- ARRAY['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Ant Design', 'Bootstrap'], 
- 'Frontend interface development for AI-driven applications.'),
-
-('Alphabase', 'ReactJs / Frontend Developer', 'Islāmābād, Pakistan · Hybrid', 'Internship', 'Nov 2024 - Jan 2025', 
- ARRAY['React.js', 'CSS', 'Bootstrap', 'Web Development', 'Tailwind CSS', 'JavaScript', 'HTML'], 
- 'Developed scalable frontend components and optimized web performance.'),
-
-('Zaplead', 'ReactJs / Frontend Developer', 'Islāmābād, Pakistan · Hybrid', 'Internship', 'Nov 2024 - Jan 2025', 
- ARRAY['React.js', 'TypeScript', 'Gitlab', 'Tailwind CSS', 'UI/UX', 'State Management', 'KA-Table'], 
- 'Built dynamic data tables and interactive dashboards using React and TypeScript.'),
-
-('JUHUU', 'ReactJs Frontend Developer', 'Pakistan · Remote', 'Freelance', 'Jan 2024 - May 2024', 
- ARRAY['React.js', 'JavaScript', 'HTML', 'Frontend Development', 'Tailwind CSS'], 
- 'Freelance frontend development for the JUHUU marketplace.'),
-
-('JUHUU Marketplace', 'Web User Interface Developer', 'Pakistan · Remote', 'Freelance', 'Oct 2023 - Dec 2023', 
- ARRAY['Bootstrap', 'CSS', 'HTML', 'JavaScript', 'UI/UX', 'Web Design'], 
- 'Designed and implemented user interfaces for web applications.'),
-
-('BestMobile.pk', 'Social Media Manager', 'Pakistan · Hybrid', 'Part-time', 'May 2020 - Apr 2024', 
- ARRAY['Adobe Photoshop', 'Adobe Premiere Pro', 'After Effects', 'Data Analysis'], 
- 'Managed social media channels and created visual content.');
-
+('Directorate of Information Technology, GCU', 'Junior Software Developer', 'Lahore, Pakistan', 'Full-time', 'May 2025 - May 2026',
+ ARRAY['Angular', 'Node.js', 'Express', 'MySQL'],
+ 'Contributed to core modules of the university LMS, serving 10,000+ students, faculty and staff, using Angular, Node.js, Express and MySQL. Built the Summer Enrollment Module, automating registration for about 1,000 students per cycle, the Teachers Billing Module, replacing a 3-month manual process for 1,000+ faculty, and the Teacher Evaluation Module. Contributed to attendance tracking, eligibility checks and grading with automated student progress reports, role-based access and PDF report generation. Built the GCU Societies Portal from scratch with 7-role access control, society registration, event approval, member management and society points tracking. Optimized MySQL queries and indexing on high-volume enrollment data. Developed the Student Scholarship and Student ID Card modules for the Student Facilitation Center, and reduced critical production bugs through manual SQA and regression testing.',
+ true);
 
 -- Insert Education
 INSERT INTO education (degree, university, period) VALUES
-('Bachelor of Science in Information Technology', 'University of Chakwal, Punjab, Pakistan', 'Oct 2020 - Sep 2024');
+('BS (Hons) in Computer Science', 'Government College University, Lahore', '2022 - 2026 · CGPA 3.14'),
+('FSc Pre-Engineering', 'Punjab College of Science, Lahore', '2020 - 2022 · 961/1100');
 
 -- Insert Skills
 INSERT INTO skills (category, items) VALUES
-('Languages', ARRAY['TypeScript', 'JavaScript', 'Python', 'PHP', 'HTML5', 'CSS3']),
-('Frameworks', ARRAY['React.js', 'Next.js', 'Node.js', 'Express.js', 'WordPress', 'Frappe', 'ERPNext']),
-('UI Libraries', ARRAY['Tailwind CSS', 'Ant Design', 'Shadcn/UI', 'Material UI', 'Chakra UI', 'Framer Motion']),
-('Tools', ARRAY['Git', 'GitHub', 'GitLab', 'Vercel', 'Figma', 'Adobe Creative Suite', 'Postman']);
+('Languages', ARRAY['JavaScript (ES6+)', 'TypeScript', 'Python', 'C++', 'HTML5', 'CSS3']),
+('Frontend', ARRAY['React.js', 'Next.js', 'Angular', 'Redux', 'Vite', 'Tailwind CSS', 'ShadCN UI', 'Radix UI', 'Responsive Design']),
+('Backend', ARRAY['Node.js', 'Express.js', 'Django', 'Django REST Framework', 'FastAPI', 'REST API design', 'GraphQL', 'Rate Limiting']),
+('Databases & ORM', ARRAY['MySQL', 'MongoDB', 'Redis', 'Prisma ORM', 'Mongoose', 'Schema Design', 'Query Optimization']),
+('Auth & Realtime', ARRAY['JWT Authentication', 'Socket.io', 'Nodemailer', 'Multer', 'JSPDF']),
+('Cloud & DevOps', ARRAY['AWS', 'Docker', 'CI/CD Pipelines', 'GitHub Actions']),
+('Tools', ARRAY['Git & GitHub', 'Postman', 'VS Code', 'MySQL Workbench', 'MongoDB Compass']),
+('Core Concepts', ARRAY['OOP', 'Data Structures & Algorithms', 'DBMS']),
+('Practices', ARRAY['Manual SQA Testing', 'Agile/Scrum', 'Sprint Planning', 'Code Reviews', 'Role-Based Access Control']);
 
--- Insert Projects (Preserving existing projects)
+-- Insert Projects
 INSERT INTO projects (name, description, tech, github_url, live_url, featured, year) VALUES
-('PeekGamer', 'Game discovery platform with SSR, advanced search/filter, custom dark UI, and favorites saved via localStorage.', ARRAY['Next.js', 'TypeScript', 'Ant Design', 'RAWG API'], 'https://github.com/faheem506pk/PeekGamer', 'https://peekgamer.vercel.app', true, '2025'),
-('StitchSmart', 'Tailor shop management system with role-based access, analytics, payments, and offline support using IndexedDB.', ARRAY['React', 'TypeScript', 'Firebase', 'Zustand'], 'https://github.com/Start-app/StitchSmart', 'https://stitchsmart.vercel.app', true, '2025'),
-('Qotion', 'Notion-style table clone with drag-and-drop and real-time sync.', ARRAY['React', 'TypeScript', 'Firebase', 'Dnd-kit'], 'https://github.com/faheem506pk/Qotion', 'https://qotion.vercel.app', true, '2024'),
-('KaTable App', 'Custom editable data table with localStorage persistence.', ARRAY['React', 'TypeScript', 'MUI', 'React Table'], 'https://github.com/faheem506pk/KaTable-App', 'https://katable-app.vercel.app', false, '2025'),
-('PlantPulse', 'IoT-based greenhouse monitoring system with real-time sensor dashboard.', ARRAY['React', 'Firebase', 'ESP32', 'Recharts'], 'https://github.com/faheem506pk/PlantPulse', 'https://plantpulse-iot.vercel.app', false, '2024'),
-('Cinematic Vistas', 'A modern movie browsing platform with responsive design, search functionality, and dynamic content integration.', ARRAY['React', 'TypeScript', 'Tailwind CSS', 'TMDB API'], 'https://github.com/faheem506pk/cinematic-vistas', 'https://cinematic-vistas.vercel.app', false, '2024'),
-('ExplorePak', 'A tourism platform with admin panel for package and booking management.', ARRAY['PHP', 'MySQL', 'HTML5', 'Bootstrap'], 'https://github.com/faheem506pk/ExplorePak', 'https://explorepak.vercel.app', false, '2024'),
-('Speedy Eats', 'A fully dynamic WordPress website with custom theme, ACF integration, and SEO optimization.', ARRAY['WordPress', 'ACF', 'PHP', 'JavaScript'], 'https://github.com/faheem506pk/speedy-eats', 'https://speedy-eats.vercel.app', true, '2025');
+('Skill Bridge', 'AI-powered freelance marketplace with an autonomous hiring agent that turns a client''s idea into structured scope, budget, tech stack and timeline, then matches and ranks freelancers, negotiates, and generates the contract. Role-based access for client, freelancer and admin, with real-time chat, reviews, Stripe escrow, bidding, skill tokens and dispute resolution.', ARRAY['React', 'TypeScript', 'Node.js', 'Express', 'Prisma', 'MongoDB', 'Redis', 'Socket.IO', 'Stripe', 'FastAPI'], NULL, 'https://skillbridge.ddns.net', true, NULL),
+('Health Connect', 'Multi-role healthcare management platform for admins, clinics, front desk staff and super admins. Appointment workflows, front desk management and billing, with role-based dashboards, REST APIs, Prisma, JWT authentication and a React frontend deployed on Vercel.', ARRAY['React', 'TypeScript', 'Vite', 'Node.js', 'Express', 'Prisma', 'MySQL'], NULL, 'https://health-connect-super.vercel.app', true, NULL),
+('Lead Management System', 'CRM-style lead management engine that tracks sales leads through multi-phase technical evaluation to final sale conversion, with phase accept and decline workflows. Role-based access for Business Development, Technical Manager and Engineer, comments with image attachments, and automated commission calculation on converted sales.', ARRAY['Django', 'Django REST Framework', 'PostgreSQL', 'Django Templates', 'AJAX'], 'https://github.com/Daniyal00001/Leads-management-system', NULL, true, NULL),
+('The College Periodical', 'Academic publishing platform where authors submit articles anonymously and publish them through peer review. Reviewer and Super Admin portals, JWT authentication, bcrypt password hashing, protected admin routes and email notifications, deployed on Vercel.', ARRAY['Next.js', 'React', 'Tailwind CSS', 'MySQL', 'JWT', 'Supabase', 'Nodemailer'], NULL, 'https://thecollegeperiodical.com', true, NULL);
 
 -- 6. MESSAGES TABLE
 create table if not exists messages (

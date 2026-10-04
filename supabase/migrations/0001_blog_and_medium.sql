@@ -8,7 +8,7 @@ alter table public.profiles
   add column if not exists social_medium text;
 
 update public.profiles
-   set social_medium = 'https://faheem506pk.medium.com/'
+   set social_medium = ''
  where social_medium is null;
 
 -- ---------------------------------------------------------------------------

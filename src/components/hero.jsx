@@ -205,9 +205,11 @@ export function Hero() {
               <a href={profile.Socials?.LinkedIn || "#"} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors">
                 <Linkedin className="h-6 w-6" />
               </a>
-              <a href={profile.Socials?.Medium || content.mediumUrl} target="_blank" rel="noreferrer" aria-label="Medium blog" className="hover:text-primary transition-colors">
-                <SiMedium className="h-6 w-6" />
-              </a>
+              {(profile.Socials?.Medium || content.mediumUrl) ? (
+                <a href={profile.Socials?.Medium || content.mediumUrl} target="_blank" rel="noreferrer" aria-label="Medium blog" className="hover:text-primary transition-colors">
+                  <SiMedium className="h-6 w-6" />
+                </a>
+              ) : null}
               <a href={`mailto:${profile.Email}`} aria-label="Email" className="hover:text-primary transition-colors">
                 <Mail className="h-6 w-6" />
               </a>

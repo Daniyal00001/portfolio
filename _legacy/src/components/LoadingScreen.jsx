@@ -25,7 +25,7 @@ const LoadingScreen = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-4xl font-bold gradient-text mb-4"
         >
-          Muhammad Faheem Iqbal
+          Muhammad Daniyal Tallat
         </motion.h1>
         
         <motion.p

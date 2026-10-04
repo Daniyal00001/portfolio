@@ -74,19 +74,19 @@ ${formData.name}`
     {
       icon: FaGithub,
       name: 'GitHub',
-      url: 'https://github.com/faheem506pk',
+      url: 'https://github.com/Daniyal00001',
       color: 'hover:text-gray-300'
     },
     {
       icon: FaLinkedin,
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/faheem506pk/',
+      url: 'https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/',
       color: 'hover:text-blue-400'
     },
     {
       icon: FaTwitter,
       name: 'Instagram',
-      url: 'https://instagram.com/faheem506pk_',
+      url: 'https://github.com/Daniyal00001',
       color: 'hover:text-pink-400'
     }
   ]

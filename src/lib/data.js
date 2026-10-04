@@ -1,8 +1,8 @@
 export const Mydata = {
   Name: "Muhammad Daniyal Tallat",
   Role: "Full Stack Software Engineer",
-  Address: "",
-  Phone: "",
+  Address: "Lahore, Pakistan",
+  Phone: "+92 316 4257645",
   Phone2: "",
   Email: "daniyaltallat0@gmail.com",
   Nationality: "Pakistani",
@@ -10,152 +10,82 @@ export const Mydata = {
     LinkedIn: "https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/",
     GitHub: "https://github.com/Daniyal00001",
     Portfolio: "http://localhost:3000",
-    Medium: "https://faheem506pk.medium.com/"
+    Medium: ""
   },
   Summary:
-    "Software Engineer with production experience building scalable full-stack applications across frontend, backend, databases, APIs, and cloud deployments.",
+    "Software Engineer with 1.5 years of production experience building scalable, high-performance applications from frontend to backend. Skilled in React, Next.js, Angular, Node.js, Express and Django (DRF), with solid command of MySQL, MongoDB, Redis, GraphQL and REST API design. Strong grounding in OOP, data structures and DBMS, with a focus on clean, maintainable code and full ownership of every feature, from database design to deployment.",
   Education: {
-    Degree: "Bachelor of Science in Information Technology",
-    Period: "Oct 2020 – Sep 2024",
-    University: "University of Chakwal, Punjab, Pakistan"
+    Degree: "BS (Hons) in Computer Science",
+    Period: "2022 – 2026",
+    University: "Government College University, Lahore"
   },
   Experience: [
     {
-      Company: "MicroMerger (Pvt.) Ltd.",
-      Position: "Software Engineer (Full Stack)",
-      Location: "Islamabad, Pakistan",
-      Description: "Full stack development with React.js, Next.js, Node.js, Python and the Frappe/ERPNext ecosystem, promoted from Associate Software Engineer. Contributed to 5+ confidential client projects using React.js, Next.js, Redux, Frappe/ERPNext and UI libraries such as Chakra UI. Currently building TabTake, an all-in-one restaurant management system covering online ordering, delivery and collection, QR ordering, reservations, menus and multi-location management — working across the frontend (React.js, Next.js, TypeScript) and backend, building responsive, reusable components from Figma designs and applying SEO best practices.",
-      Duration: "Jan 2026 – Present",
+      Company: "Devsinc",
+      Position: "Software Engineer Intern",
+      Location: "Lahore, Pakistan",
+      Description: "Contributing to Agents Anywhere, an applied AI platform that helps mid-market and enterprise companies turn their knowledge into AI tools, agents and automated workflows, with human approval on sensitive actions. Built the client intake framework and dossier generation, connectors, plugins, MCP skills and Orbit features, and set up AWS deployment with GitHub Actions CI/CD. Also contributing to VeriCasa, an AI-powered legal-tech platform for real estate agencies, law firms and notaries in the Portuguese and US markets, running 100+ automated legal cross-checks and generating contracts in seconds. Developed full-stack features across document analysis, contract generation and KYC compliance workflows, with REST APIs, encrypted document storage and GDPR-compliant data handling.",
+      Duration: "Aug 2026 – Present",
     },
     {
-      Company: "MicroMerger (Pvt.) Ltd.",
-      Position: "Associate Software Engineer",
-      Location: "Islamabad, Pakistan",
-      Description: "Frontend development with React.js, TypeScript and Tailwind CSS, and support on ERPNext implementations. Delivered WordPress sites with Advanced Custom Fields, including Speedy Eats, a restaurant website with a custom theme and CMS. Built admin panels with Ant Design, Material UI and Chakra UI; deployed production apps on Vercel.",
-      Duration: "Feb 2025 – Jan 2026",
-    },
-    {
-      Company: "Alphabase (US-based)",
-      Position: "Frontend Development Intern",
-      Location: "NSTP, Islamabad, Pakistan",
-      Description: "Developed Qotion, a Notion-style collaborative table app with drag-and-drop and real-time sync (React, TypeScript, Firebase). Improved UI/UX on the Zaplead.ai platform. Managed application state with Jotai, Zustand and React Context API.",
-      Duration: "Nov 2024 – Feb 2025",
-    },
-    {
-      Company: "JUHUU GmbH (Austria)",
-      Position: "Frontend Developer",
-      Location: "Remote",
-      Description: "Built the JUHUU Marketplace and BikeBox websites with React.js, Tailwind CSS and JavaScript. Implemented BikeBox bike rental features: product listing, filtering, booking flow and mobile optimisation.",
-      Duration: "Sep 2023 – Mar 2024",
-    },
-    {
-      Company: "BestMobile.pk",
-      Position: "Social Media Manager (Part-time)",
-      Location: "Remote",
-      Description: "Managed social media content and visuals (Photoshop, After Effects) alongside university studies.",
-      Duration: "Jan 2020 – Jun 2024",
+      Company: "Directorate of Information Technology, GCU",
+      Position: "Junior Software Developer",
+      Location: "Lahore, Pakistan",
+      Description: "Contributed to core modules of the university LMS, serving 10,000+ students, faculty and staff, using Angular, Node.js, Express and MySQL. Built the Summer Enrollment Module, automating registration for about 1,000 students per cycle, the Teachers Billing Module, replacing a 3-month manual process for 1,000+ faculty, and the Teacher Evaluation Module. Contributed to attendance tracking, eligibility checks and grading with automated student progress reports, role-based access and PDF report generation. Built the GCU Societies Portal from scratch with 7-role access control, society registration, event approval, member management and society points tracking. Optimized MySQL queries and indexing on high-volume enrollment data. Developed the Student Scholarship and Student ID Card modules for the Student Facilitation Center, and reduced critical production bugs through manual SQA and regression testing.",
+      Duration: "May 2025 – May 2026",
     },
   ],
   Projects: [
     {
-      id: 9,
-      Name: "TabTake",
-      Description: "All-in-one restaurant management system covering online ordering, delivery and collection, QR ordering, table reservations, digital menus, kitchen printing and multi-location management. Built responsive, reusable components from Figma designs across frontend and backend.",
-      Tech: ["React.js", "Next.js", "TypeScript", "Node.js", "Frappe"],
-      GitHub: "",
-      Live: "https://tabtake.com",
-      Featured: true,
-      Year: "2026"
-    },
-    {
       id: 1,
-      Name: "PeekGamer",
-      Description: "Game discovery platform with SSR, advanced search/filter, custom dark UI, and favorites saved via localStorage.",
-      Tech: ["Next.js", "TypeScript", "Ant Design", "RAWG API"],
-      GitHub: "https://github.com/faheem506pk/PeekGamer",
-      Live: "https://peekgamer.vercel.app",
+      Name: "Skill Bridge",
+      Description: "AI-powered freelance marketplace with an autonomous hiring agent that turns a client's idea into structured scope, budget, tech stack and timeline, then matches and ranks freelancers, negotiates, and generates the contract. Role-based access for client, freelancer and admin, with real-time chat, reviews, Stripe escrow, bidding, skill tokens and dispute resolution.",
+      Tech: ["React", "TypeScript", "Node.js", "Express", "Prisma", "MongoDB", "Redis", "Socket.IO", "Stripe", "FastAPI"],
+      GitHub: "",
+      Live: "https://skillbridge.ddns.net",
       Featured: true,
-      Year: "2025"
+      Year: ""
     },
     {
       id: 2,
-      Name: "StitchSmart",
-      Description: "Tailor shop management system with role-based access, analytics, payments, and offline support using IndexedDB.",
-      Tech: ["React", "TypeScript", "Firebase", "Zustand"],
-      GitHub: "https://github.com/Start-app/StitchSmart",
-      Live: "https://stitchsmart.vercel.app",
+      Name: "Health Connect",
+      Description: "Multi-role healthcare management platform for admins, clinics, front desk staff and super admins. Appointment workflows, front desk management and billing, with role-based dashboards, REST APIs, Prisma, JWT authentication and a React frontend deployed on Vercel.",
+      Tech: ["React", "TypeScript", "Vite", "Node.js", "Express", "Prisma", "MySQL"],
+      GitHub: "",
+      Live: "https://health-connect-super.vercel.app",
       Featured: true,
-      Year: "2025"
+      Year: ""
     },
     {
       id: 3,
-      Name: "Qotion",
-      Description: "Notion-style table clone with drag-and-drop and real-time sync.",
-      Tech: ["React", "TypeScript", "Firebase", "Dnd-kit"],
-      GitHub: "https://github.com/faheem506pk/Qotion",
-      Live: "https://qotion.vercel.app",
+      Name: "Lead Management System",
+      Description: "CRM-style lead management engine that tracks sales leads through multi-phase technical evaluation to final sale conversion, with phase accept and decline workflows. Role-based access for Business Development, Technical Manager and Engineer, comments with image attachments, and automated commission calculation on converted sales.",
+      Tech: ["Django", "Django REST Framework", "PostgreSQL", "Django Templates", "AJAX"],
+      GitHub: "https://github.com/Daniyal00001/Leads-management-system",
+      Live: "",
       Featured: true,
-      Year: "2024"
+      Year: ""
     },
     {
       id: 4,
-      Name: "KaTable App",
-      Description: "Custom editable data table with localStorage persistence.",
-      Tech: ["React", "TypeScript", "MUI", "React Table"],
-      GitHub: "https://github.com/faheem506pk/KaTable-App",
-      Live: "https://katable-app.vercel.app",
-      Featured: false,
-      Year: "2025"
-    },
-    {
-      id: 5,
-      Name: "PlantPulse",
-      Description: "IoT-based greenhouse monitoring system with real-time sensor dashboard.",
-      Tech: ["React", "Firebase", "ESP32", "Recharts"],
-      GitHub: "https://github.com/faheem506pk/PlantPulse",
-      Live: "https://plantpulse-iot.vercel.app",
-      Featured: false,
-      Year: "2024"
-    },
-    {
-      id: 6,
-      Name: "Cinematic Vistas",
-      Description: "A modern movie browsing platform with responsive design, search functionality, and dynamic content integration.",
-      Tech: ["React", "TypeScript", "Tailwind CSS", "TMDB API"],
-      GitHub: "https://github.com/faheem506pk/cinematic-vistas",
-      Live: "https://cinematic-vistas.vercel.app",
-      Featured: false,
-      Year: "2024"
-    },
-    {
-      id: 7,
-      Name: "ExplorePak",
-      Description: "A tourism platform with admin panel for package and booking management.",
-      Tech: ["PHP", "MySQL", "HTML5", "Bootstrap"],
-      GitHub: "https://github.com/faheem506pk/ExplorePak",
-      Live: "https://explorepak.vercel.app",
-      Featured: false,
-      Year: "2024"
-    },
-    {
-      id: 8,
-      Name: "Speedy Eats",
-      Description: "A fully dynamic WordPress website with custom theme, ACF integration, and SEO optimization.",
-      Tech: ["WordPress", "ACF", "PHP", "JavaScript"],
-      GitHub: "https://github.com/faheem506pk/speedy-eats",
-      Live: "https://speedy-eats.vercel.app",
+      Name: "The College Periodical",
+      Description: "Academic publishing platform where authors submit articles anonymously and publish them through peer review. Reviewer and Super Admin portals, JWT authentication, bcrypt password hashing, protected admin routes and email notifications, deployed on Vercel.",
+      Tech: ["Next.js", "React", "Tailwind CSS", "MySQL", "JWT", "Supabase", "Nodemailer"],
+      GitHub: "",
+      Live: "https://thecollegeperiodical.com",
       Featured: true,
-      Year: "2025"
+      Year: ""
     }
   ],
   Skills: {
-    Languages: ["TypeScript", "JavaScript", "HTML5", "CSS3", "Python", "PHP"],
-    Frameworks: ["React.js", "Next.js", "Node.js", "Express.js", "WordPress", "Frappe", "ERPNext"],
-    "UI Libraries": ["Tailwind CSS", "Ant Design", "Shadcn/UI", "Material UI", "Chakra UI", "Radix UI", "Framer Motion", "Bootstrap"],
-    Tools: ["Git", "GitHub", "GitLab", "Vercel", "Figma", "Postman", "Jira", "Linux (Ubuntu)", "CLI"],
-    "Database & Storage": ["MySQL", "PostgreSQL", "Supabase", "Neon", "MongoDB", "Redis", "Firebase", "IndexedDB", "Clerk", "NextAuth"],
-    "IoT & Hardware": ["Arduino", "ESP32", "C++", "Blynk IoT", "Amazon Alexa", "Sensors", "PCB & Circuit Design"],
-    "Testing & CI/CD": ["Jest", "Playwright", "GitHub Actions"],
-    "AI Tools": ["Claude Code", "Codex", "Google Antigravity", "Google Jules", "Google Stitch", "Claude Design", "Google Flow", "OpenRouter API"]
+    Languages: ["JavaScript (ES6+)", "TypeScript", "Python", "C++", "HTML5", "CSS3"],
+    Frontend: ["React.js", "Next.js", "Angular", "Redux", "Vite", "Tailwind CSS", "ShadCN UI", "Radix UI", "Responsive Design"],
+    Backend: ["Node.js", "Express.js", "Django", "Django REST Framework", "FastAPI", "REST API design", "GraphQL", "Rate Limiting"],
+    "Databases & ORM": ["MySQL", "MongoDB", "Redis", "Prisma ORM", "Mongoose", "Schema Design", "Query Optimization"],
+    "Auth & Realtime": ["JWT Authentication", "Socket.io", "Nodemailer", "Multer", "JSPDF"],
+    "Cloud & DevOps": ["AWS", "Docker", "CI/CD Pipelines", "GitHub Actions"],
+    Tools: ["Git & GitHub", "Postman", "VS Code", "MySQL Workbench", "MongoDB Compass"],
+    "Core Concepts": ["OOP", "Data Structures & Algorithms", "DBMS"],
+    Practices: ["Manual SQA Testing", "Agile/Scrum", "Sprint Planning", "Code Reviews", "Role-Based Access Control"]
   }
 };

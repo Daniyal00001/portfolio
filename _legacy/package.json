@@ -1,5 +1,5 @@
 {
-  "name": "faheem-portfolio",
+  "name": "daniyal-portfolio",
   "version": "1.0.0",
   "description": "Interactive React.js Portfolio with Storytelling Elements",
   "main": "index.js",
@@ -41,6 +41,6 @@
     "storytelling",
     "animation"
   ],
-  "author": "Muhammad Faheem Iqbal",
+  "author": "Muhammad Daniyal Tallat",
   "license": "MIT"
 }

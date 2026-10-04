@@ -23,7 +23,7 @@ or a search for his name.
 
 ## Product Purpose
 
-A personal portfolio and CV site for Muhammad Faheem Iqbal, a full stack developer
+A personal portfolio and CV site for Muhammad Daniyal Tallat, a full stack developer
 based in Islamabad, Pakistan.
 
 Success is a visitor **downloading the CV** — that is the single conversion the
@@ -49,7 +49,7 @@ Austria, United States) and promotion to Software Engineer within 11 months.
 - Visitors are usually skim-reading and time-poor; many arrive on mobile.
 - The site is also used as a live link inside job applications, so it must load fast
   and read credibly on first paint.
-- The CV PDF lives at `public/assets/PDF/CV/Muhammad_Faheem_Iqbal_CV.pdf` and is kept
+- The CV PDF lives at `public/assets/PDF/CV/Muhammad_Daniyal_Tallat_CV.pdf` and is kept
   in sync with the site content.
 
 ## Capabilities and Constraints
@@ -90,7 +90,7 @@ Real, verifiable material — none of this may be fabricated or embellished:
   (tabtake.com).
 - **Projects:** StitchSmart, PeekGamer, Qotion, PlantPulse, Cinematic Vistas,
   ExplorePak, Speedy Eats, KaTable, Liquid Ether. 25+ public GitHub repositories.
-- **Writing:** Medium at faheem506pk.medium.com.
+- **Writing:** Medium at daniyal.medium.com.
 - **Education:** BS Information Technology, University of Chakwal (2020–2024).
 
 Explicit absences that must not be invented: no client testimonials, no user or

@@ -114,11 +114,10 @@ export async function generateMetadata() {
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
-        { url: "/assets/mylogo/MFI-Black.png", media: "(prefers-color-scheme: light)", sizes: "any", type: "image/png" },
-        { url: "/assets/mylogo/MFI-White.png", media: "(prefers-color-scheme: dark)", sizes: "any", type: "image/png" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       ],
       apple: [
-        { url: "/assets/mylogo/MFI-Black.png", sizes: "180x180", type: "image/png" }
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
       ],
     },
     manifest: "/manifest.json",

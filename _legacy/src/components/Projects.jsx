@@ -19,7 +19,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "frontend",
       technologies: ["Next.js 14", "TypeScript", "Ant Design", "Vercel"],
-      github: "https://github.com/faheem506pk/peekgamer",
+      github: "https://github.com/Daniyal00001/peekgamer",
       live: "https://peekgamer.vercel.app",
       featured: true
     },
@@ -30,7 +30,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "fullstack",
       technologies: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Zustand", "IndexedDB"],
-      github: "https://github.com/faheem506pk/stitchsmart",
+      github: "https://github.com/Daniyal00001/stitchsmart",
       live: "https://stitchsmart.vercel.app",
       featured: true
     },
@@ -41,7 +41,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "frontend",
       technologies: ["React", "TypeScript", "Jotai", "Zustand", "Firebase", "Tailwind CSS"],
-      github: "https://github.com/faheem506pk/notion_table_clone",
+      github: "https://github.com/Daniyal00001/notion_table_clone",
       live: "https://qotion.vercel.app",
       featured: true
     },
@@ -52,7 +52,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "frontend",
       technologies: ["React", "TypeScript", "Material UI", "KaTable"],
-      github: "https://github.com/faheem506pk/my-katable-app",
+      github: "https://github.com/Daniyal00001/my-katable-app",
       live: "https://iotion.vercel.app",
       featured: false
     },
@@ -63,7 +63,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "fullstack",
       technologies: ["ESP32", "React", "Firebase", "C++", "Arduino IDE"],
-      github: "https://github.com/faheem506pk/PlantPulse",
+      github: "https://github.com/Daniyal00001/PlantPulse",
       live: "https://plantpulse.vercel.app",
       featured: true
     },
@@ -74,7 +74,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "frontend",
       technologies: ["React", "TypeScript", "Tailwind CSS", "API Integration"],
-      github: "https://github.com/faheem506pk/cinematic-vistas",
+      github: "https://github.com/Daniyal00001/cinematic-vistas",
       live: "https://cinematic-vistas.vercel.app",
       featured: false
     },
@@ -85,7 +85,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "fullstack",
       technologies: ["PHP", "MySQL", "HTML5", "CSS3", "Bootstrap"],
-      github: "https://github.com/faheem506pk/ExplorePak",
+      github: "https://github.com/Daniyal00001/ExplorePak",
       live: "https://explorepak.vercel.app",
       featured: false
     },
@@ -96,7 +96,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       category: "fullstack",
       technologies: ["WordPress", "ACF", "PHP", "CSS", "JavaScript"],
-      github: "https://github.com/faheem506pk/speedy-eats",
+      github: "https://github.com/Daniyal00001/speedy-eats",
       live: "https://speedy-eats.vercel.app",
       featured: true
     }
@@ -247,7 +247,7 @@ const Projects = () => {
           {/* Call to Action */}
           <RevealText delay={0.8} className="text-center mt-16">
             <a
-              href="https://github.com/faheem506pk"
+              href="https://github.com/Daniyal00001"
               target="_blank"
               rel="noopener noreferrer"
             >

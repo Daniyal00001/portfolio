@@ -1,12 +1,12 @@
 export const Mydata = {
-  Name: "Muhammad Faheem Iqbal",
+  Name: "Muhammad Daniyal Tallat",
   Address: "Khanna Pul, Islamabad, Pakistan",
   Phone: "+92 (332) 5194976, +92 (318) 0555360",
-  Email: "faheemiqbalm@gmail.com",
+  Email: "daniyaltallat0@gmail.com",
   Nationality: "Pakistani",
-  LinkedIn: "M Faheem Iqbal",
-  GitHub: "M Faheem Iqbal",
-  Portfolio: "faheem506pk",
+  LinkedIn: "Muhammad Daniyal Tallat",
+  GitHub: "Muhammad Daniyal Tallat",
+  Portfolio: "daniyal",
   Summary:
     "ReactJS Frontend Developer with over 1 year of professional experience building scalable, responsive, and user-friendly web applications. Expertise in ReactJS, Next.js, TypeScript, JavaScript, and modern frontend technologies. Highly skilled in converting Figma designs to pixel-perfect, production-ready code with attention to detail and design fidelity. Strong understanding of SEO best practices, semantic HTML, and web performance optimization. Proficient in WordPress development with Advanced Custom Fields, UI frameworks including Ant Design, Tailwind CSS, Material UI, and Chakra UI. Experienced with Firebase integration, state management solutions, and Vercel deployment. Strong command of CLI environments and Ubuntu Linux systems. Passionate about frontend development, UI/UX implementation, continuous learning, and creating exceptional user experiences.",
   Education: "Bachelor of Science in Information Technology - Oct 2020 – Sep 2024",
@@ -131,13 +131,13 @@ export const Mydata = {
 
 {
   /* 
-MUHAMMAD FAHEEM IQBAL
+MUHAMMAD DANIYAL TALLAT
 Frontend Web Developer
 Address: Khanna Pul, Islamabad, Pakistan
 Phone: +92 (332) 5194976, +92 (318) 0555360
-Email: faheemiqbalm@gmail.com
+Email: daniyaltallat0@gmail.com
 Nationality: Pakistani
-LinkedIn: M Faheem Iqbal |GitHub: M Faheem Iqbal | Portfolio: faheem506pk
+LinkedIn: Muhammad Daniyal Tallat |GitHub: Muhammad Daniyal Tallat | Portfolio: daniyal
 Summary
 ReactJS Frontend Developer with over 1 year of professional experience building scalable, responsive, and
 user-friendly web applications. Expertise in ReactJS, Next.js, TypeScript, JavaScript, and modern frontend

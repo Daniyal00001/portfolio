@@ -47,8 +47,8 @@ const About = () => {
                   <div className="relative">
                     <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden profile-frame">
                       <img 
-                        src="/images/faheem506pk.jpeg" 
-                        alt="Muhammad Faheem Iqbal"
+                        src="/images/daniyal.jpeg" 
+                        alt="Muhammad Daniyal Tallat"
                         className="w-full h-full object-cover profile-image"
                       />
                     </div>
@@ -78,8 +78,8 @@ const About = () => {
                     <span>{Mydata.Address.split(',')[1]}, {Mydata.Address.split(',')[2]}</span>
                   </div>
                   <a
-                    href="/cv/Muhammad_Faheem_Iqbal_CV.pdf"
-                    download="Muhammad_Faheem_Iqbal_CV.pdf"
+                    href="/cv/Muhammad_Daniyal_Tallat_CV.pdf"
+                    download="Muhammad_Daniyal_Tallat_CV.pdf"
                     className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                   >
                     <FaDownload className="w-4 h-4" />
