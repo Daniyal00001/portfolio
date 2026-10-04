@@ -31,6 +31,7 @@ export function ProjectModal({
     featured: false,
     year: "",
     images: [], // Support multiple images
+    associated_with: "",
   });
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export function ProjectModal({
           ...initialData,
           tech: initialData.tech ? initialData.tech.join(", ") : "",
           images: initialData.images || (initialData.image_url ? [initialData.image_url] : []),
+          associated_with: initialData.associated_with || "",
         });
       } else {
 
@@ -55,6 +57,7 @@ export function ProjectModal({
           featured: false,
           year: new Date().getFullYear().toString(),
           images: [],
+          associated_with: "",
         });
       }
     }
@@ -70,6 +73,7 @@ export function ProjectModal({
     onSubmit({
       ...formData,
       tech: techArray,
+      associated_with: (formData.associated_with || "").trim(),
     });
   };
 
@@ -95,6 +99,18 @@ export function ProjectModal({
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="associated_with">Associated with</Label>
+            <Input
+              id="associated_with"
+              placeholder="e.g. Devsinc"
+              value={formData.associated_with || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, associated_with: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
@@ -116,7 +132,6 @@ export function ProjectModal({
               onChange={(e) =>
                 setFormData({ ...formData, tech: e.target.value })
               }
-              required
             />
           </div>
 

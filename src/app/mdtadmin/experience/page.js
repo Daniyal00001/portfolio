@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Plus, Pencil, Trash2, MapPin, Calendar, Briefcase } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { ExperienceModal } from "@/components/admin/experience-modal";
 import { saveExperienceAction, deleteExperienceAction } from "@/actions/experience";
@@ -26,7 +27,7 @@ export default function AdminExperiencePage() {
     setLoading(true);
     const { data, error } = await supabase
       .from("experience")
-      .select("id, company, position, location, description, duration, start_date, end_date, type, skills, logo_url, company_url, links, is_development, created_at")
+      .select("id, company, position, location, description, duration, start_date, end_date, type, skills, logo_url, company_url, links, is_development, visible, created_at")
       .order("id", { ascending: true });
 
     if (error) console.error("Error fetching experience:", error);
@@ -42,6 +43,17 @@ export default function AdminExperiencePage() {
   const handleEdit = (exp) => {
     setEditingExperience(exp);
     setModalOpen(true);
+  };
+
+  const handleToggleVisible = async (exp, visible) => {
+    setExperiences((current) => current.map((item) => (item.id === exp.id ? { ...item, visible } : item)));
+    const { error } = await supabase.from("experience").update({ visible }).eq("id", exp.id);
+    if (error) {
+      setExperiences((current) => current.map((item) => (item.id === exp.id ? { ...item, visible: exp.visible !== false } : item)));
+      toast.error("Could not update that role.");
+      return;
+    }
+    toast.success(visible ? "Role is now shown" : "Role is now hidden");
   };
 
   const handleDelete = async (id) => {
@@ -107,7 +119,7 @@ export default function AdminExperiencePage() {
 
       <div className="grid gap-4">
         {experiences.map((exp) => (
-          <Card key={exp.id} className="border-border/50 bg-card/50">
+          <Card key={exp.id} className={`border-border/50 bg-card/50 ${exp.visible === false ? "opacity-60" : ""}`}>
             <CardContent className="p-6">
               <div className="flex flex-col md:flex-row justify-between gap-4">
                 <div className="space-y-2 flex-1">
@@ -119,6 +131,7 @@ export default function AdminExperiencePage() {
                       <div>
                       <div className="flex items-center gap-2">
                         <h3 className="text-xl font-bold">{exp.position}</h3>
+                        {exp.visible === false && <Badge variant="outline">Hidden</Badge>}
                         {exp.is_development !== false ? (
                           <Badge variant="secondary" className="bg-tuscan-sun/20 text-tuscan-sun border-tuscan-sun/30">
                             Dev Role
@@ -163,6 +176,14 @@ export default function AdminExperiencePage() {
                 </div>
 
                 <div className="flex md:flex-col gap-2 justify-start md:border-l md:pl-4 border-border/50">
+                  <label className="flex items-center justify-between gap-3 rounded-md border border-border/50 px-2 py-1.5 text-sm">
+                    <span>{exp.visible === false ? "Hidden" : "Shown"}</span>
+                    <Switch
+                      checked={exp.visible !== false}
+                      onCheckedChange={(checked) => handleToggleVisible(exp, checked)}
+                      aria-label={`${exp.visible === false ? "Show" : "Hide"} ${exp.position}`}
+                    />
+                  </label>
                   <Button variant="outline" size="sm" onClick={() => handleEdit(exp)}>
                     <Pencil className="h-4 w-4 mr-2" /> Edit
                   </Button>

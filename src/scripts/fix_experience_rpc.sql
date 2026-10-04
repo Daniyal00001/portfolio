@@ -12,6 +12,7 @@ UPDATE experience SET is_development = false WHERE company ILIKE '%BestMobile%';
 -- Step 3: Company and bullet links
 ALTER TABLE experience ADD COLUMN IF NOT EXISTS company_url text;
 ALTER TABLE experience ADD COLUMN IF NOT EXISTS links jsonb NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE experience ADD COLUMN IF NOT EXISTS visible boolean NOT NULL DEFAULT true;
 
 -- Step 4: Replace the RPC so new link fields can be saved
 DO $$

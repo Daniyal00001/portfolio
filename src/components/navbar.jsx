@@ -130,28 +130,36 @@ export function Navbar() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] border-l border-border dark:border-primary/30">
-              <SheetHeader>
-                <SheetTitle className="font-display text-left text-2xl font-bold text-foreground">
-                  Menu
-                </SheetTitle>
+            <SheetContent
+              side="left"
+              overlayClassName="bg-black/70"
+              className="w-72 gap-0 border-r border-border bg-background p-0 sm:max-w-none"
+            >
+              <SheetHeader className="border-b border-border/70 px-6 py-5 pr-12">
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <img src={content.logoLight} alt="MDT" className="h-8 w-auto max-w-[8.5rem] object-contain object-left dark:hidden" />
+                <img src={content.logoDark} alt="MDT" className="hidden h-8 w-auto max-w-[8.5rem] object-contain object-left dark:block" />
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={cn(
-                      "text-lg font-medium transition-all hover:translate-x-2",
-                      (pathname === "/" ? activeSection === item.href : pathname === item.href)
-                        ? "text-primary font-bold translate-x-2"
-                        : "text-foreground"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <nav className="flex flex-col gap-1 px-3 py-4">
+                {navItems.map((item) => {
+                  const active = pathname === "/" ? activeSection === item.href : pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={cn(
+                        "rounded-lg px-3 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
+                        active && "bg-primary/10 text-foreground"
+                      )}
+                    >
+                      <span className="inline-flex flex-col">
+                        <span className={cn(active && "font-semibold")}>{item.name}</span>
+                        <span className={cn("mt-1 h-0.5 rounded-full bg-primary", active ? "w-full" : "w-0")} />
+                      </span>
+                    </Link>
+                  )
+                })}
               </nav>
             </SheetContent>
           </Sheet>

@@ -50,11 +50,66 @@ export const Mydata = {
   ],
   Projects: [
     {
+      id: 5,
+      Name: "Agents Anywhere",
+      Description: "Contributing to an applied AI platform that helps mid-market and enterprise companies turn their knowledge into AI tools, agents and automated workflows, with human approval on sensitive actions. Built the client intake framework and dossier generation, connectors, plugins, MCP skills and Orbit features, and set up AWS deployment with GitHub Actions CI/CD.",
+      Tech: ["AWS", "GitHub Actions"],
+      GitHub: "",
+      Live: "https://agentsanywhere.ai/",
+      Featured: false,
+      Year: "2026",
+      Associated: "Devsinc"
+    },
+    {
+      id: 6,
+      Name: "VeriCasa",
+      Description: "Contributed to an AI-powered legal-tech platform for real estate agencies, law firms and notaries in the Portuguese and US markets, running 100+ of automated legal cross-checks and generating contracts in seconds. Developed full-stack features across document analysis, contract generation and KYC compliance workflows, with REST APIs, encrypted document storage and GDPR-compliant data handling.",
+      Tech: ["REST APIs"],
+      GitHub: "",
+      Live: "https://vericasa.com/en",
+      Featured: false,
+      Year: "2026",
+      Associated: "Devsinc"
+    },
+    {
+      id: 7,
+      Name: "GCU LMS",
+      Description: "Contributed to core modules of the university's main platform, serving 10,000+ students, faculty and staff, using Angular, Node.js, Express and MySQL, and built the Summer Enrollment Module, automating registration for ~1,000 students per cycle. Built the Teachers Billing Module, replacing a 3-month manual process with an online system for 1,000+ faculty, and developed the Teacher Evaluation Module, while contributing to attendance tracking, eligibility checks and grading with automated student progress reports, role-based access and PDF report generation.",
+      Tech: ["Angular", "Node.js", "Express", "MySQL"],
+      GitHub: "",
+      Live: "https://lms.gcu.edu.pk/",
+      Featured: false,
+      Year: "2025",
+      Associated: "Directorate of Information Technology, GCU"
+    },
+    {
+      id: 8,
+      Name: "GCU Societies Portal",
+      Description: "Built from scratch with 7-role Role-Based Access Control (RBAC), society registration, event approval workflows, member management and society points tracking. Optimized MySQL queries and indexing on high-volume enrollment data, reducing slow-query retrieval times across modules.",
+      Tech: ["MySQL"],
+      GitHub: "",
+      Live: "https://societies.gcu.edu.pk:10580/",
+      Featured: false,
+      Year: "2025",
+      Associated: "Directorate of Information Technology, GCU"
+    },
+    {
+      id: 9,
+      Name: "GCU SFC",
+      Description: "Developed the core Student Scholarship and Student ID Card modules, digitizing scholarship applications and ID card requests. Reduced critical production bugs through manual SQA and regression testing across multiple modules.",
+      Tech: [],
+      GitHub: "",
+      Live: "https://sfc.gcu.edu.pk/",
+      Featured: false,
+      Year: "2025",
+      Associated: "Directorate of Information Technology, GCU"
+    },
+    {
       id: 1,
       Name: "Skill Bridge",
       Description: "AI-powered freelance marketplace with an autonomous hiring agent that turns a client's idea into structured scope, budget, tech stack and timeline, then matches and ranks freelancers, negotiates, and generates the contract. Role-based access for client, freelancer and admin, with real-time chat, reviews, Stripe escrow, bidding, skill tokens and dispute resolution.",
       Tech: ["React", "TypeScript", "Node.js", "Express", "Prisma", "MongoDB", "Redis", "Socket.IO", "Stripe", "FastAPI"],
-      GitHub: "",
+      GitHub: "https://github.com/Daniyal00001/Skill-Bridge-backend",
       Live: "https://skillbridge.ddns.net",
       Featured: true,
       Year: ""
@@ -64,7 +119,7 @@ export const Mydata = {
       Name: "Health Connect",
       Description: "Multi-role healthcare management platform for admins, clinics, front desk staff and super admins. Appointment workflows, front desk management and billing, with role-based dashboards, REST APIs, Prisma, JWT authentication and a React frontend deployed on Vercel.",
       Tech: ["React", "TypeScript", "Vite", "Node.js", "Express", "Prisma", "MySQL"],
-      GitHub: "",
+      GitHub: "https://github.com/Daniyal00001/HealthConnect-backend",
       Live: "https://health-connect-super.vercel.app",
       Featured: true,
       Year: ""
@@ -84,7 +139,7 @@ export const Mydata = {
       Name: "The College Periodical",
       Description: "Academic publishing platform where authors submit articles anonymously and publish them through peer review. Reviewer and Super Admin portals, JWT authentication, bcrypt password hashing, protected admin routes and email notifications, deployed on Vercel.",
       Tech: ["Next.js", "React", "Tailwind CSS", "MySQL", "JWT", "Supabase", "Nodemailer"],
-      GitHub: "",
+      GitHub: "https://github.com/Daniyal00001/The-College-Periodical",
       Live: "https://thecollegeperiodical.com",
       Featured: true,
       Year: ""

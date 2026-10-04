@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Loader2, Plus, Trash2, Edit, ExternalLink, Github, Database } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ProjectModal } from "@/components/admin/project-modal";
@@ -32,7 +33,7 @@ export default function AdminPage() {
   }, []);
 
   const fetchProjects = useCallback(async () => {
-    const { data, error } = await supabase.from("projects").select("*").order("id", { ascending: false });
+    const { data, error } = await supabase.from("projects").select("*").order("sort_order", { ascending: true, nullsFirst: false }).order("id", { ascending: true });
     if (error) console.error("Error fetching projects:", error);
     else setProjects(data || []);
   }, []);
@@ -58,6 +59,17 @@ export default function AdminPage() {
   const handleEditProject = (project) => {
     setEditingProject(project);
     setProjectModalOpen(true);
+  };
+
+  const handleToggleVisible = async (project, visible) => {
+    setProjects((current) => current.map((item) => (item.id === project.id ? { ...item, visible } : item)));
+    const { error } = await supabase.from("projects").update({ visible }).eq("id", project.id);
+    if (error) {
+      setProjects((current) => current.map((item) => (item.id === project.id ? { ...item, visible: project.visible !== false } : item)));
+      toast.error("Could not update that project.");
+      return;
+    }
+    toast.success(visible ? "Project is now shown" : "Project is now hidden");
   };
 
   const handleDeleteProject = async (id) => {
@@ -155,7 +167,7 @@ export default function AdminPage() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid gap-4">
                 {projects.map((project, index) => (
                   <motion.div key={project.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }}>
-                    <Card className="border-border/50 bg-card/60 backdrop-blur-sm hover:border-verdigris/30 hover:bg-card/80 transition-all duration-300 group overflow-hidden">
+                    <Card className={`border-border/50 bg-card/60 backdrop-blur-sm hover:border-verdigris/30 hover:bg-card/80 transition-all duration-300 group overflow-hidden ${project.visible === false ? "opacity-60" : ""}`}>
                       <CardContent className="p-0">
                         <div className="flex flex-col md:flex-row">
                           <div className="flex-1 p-6 space-y-4">
@@ -166,10 +178,14 @@ export default function AdminPage() {
                                     {project.name}
                                   </h3>
                                   {project.featured && <Badge className="bg-tuscan-sun/90 text-charcoal-blue border-none shadow-sm">Featured</Badge>}
+                                  {project.visible === false && <Badge variant="outline">Hidden</Badge>}
                                   <Badge variant="outline" className="border-border/50 bg-background/50">
                                     {project.year}
                                   </Badge>
                                 </div>
+                                {project.associated_with ? (
+                                  <p className="text-xs text-muted-foreground">Associated with {project.associated_with}</p>
+                                ) : null}
                                 <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
                               </div>
                             </div>
@@ -193,6 +209,14 @@ export default function AdminPage() {
                           </div>
 
                           <div className="flex md:flex-col gap-2 p-6 md:border-l border-border/30 bg-muted/5 justify-end md:justify-center min-w-[140px]">
+                            <label className="flex items-center justify-between gap-3 rounded-md border border-border/50 px-2 py-1.5 text-sm">
+                              <span>{project.visible === false ? "Hidden" : "Shown"}</span>
+                              <Switch
+                                checked={project.visible !== false}
+                                onCheckedChange={(checked) => handleToggleVisible(project, checked)}
+                                aria-label={`${project.visible === false ? "Show" : "Hide"} ${project.name}`}
+                              />
+                            </label>
                             {project.github_url && (
                               <Button variant="ghost" size="sm" className="w-full justify-start text-muted-foreground hover:text-foreground" asChild>
                                 <a href={project.github_url} target="_blank" rel="noreferrer">

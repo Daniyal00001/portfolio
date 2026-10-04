@@ -33,6 +33,7 @@ export function Experience() {
         const { data, error } = await supabase
           .from("experience")
           .select("*")
+          .eq("visible", true)
           .order("id", { ascending: true })
 
         if (data) setExperiences(data)
