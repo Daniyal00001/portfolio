@@ -118,6 +118,9 @@ export function SkillModal({
 
           <div className="space-y-2">
             <Label>Skills</Label>
+            <p className="text-xs text-muted-foreground">
+              Names show as bullets on the Technical Expertise cards. The picture is only used in the moving row above them.
+            </p>
             <div className="max-h-[50vh] space-y-2 overflow-y-auto pr-1">
               {entries.map((entry, index) => (
                 <div key={index} className="flex items-center gap-2 rounded-lg border border-border bg-muted/20 p-2">

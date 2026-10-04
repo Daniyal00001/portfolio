@@ -8,7 +8,6 @@ import { Loader2, Plus, Pencil, Trash2, Wrench } from "lucide-react";
 import { SkillModal } from "@/components/admin/skill-modal";
 import { SectionCopy } from "@/components/admin/section-copy";
 import { skillEntries } from "@/lib/skill-entries";
-import { SkillPicture } from "@/lib/skill-icons";
 
 export default function AdminSkillsPage() {
   const [skills, setSkills] = useState([]);
@@ -94,7 +93,7 @@ export default function AdminSkillsPage() {
 
       <SectionCopy
         title="Skills text"
-        description="Headings for Technical Expertise and the technology row. Each skill name and picture is edited on the category below."
+        description="Headings for Technical Expertise and the moving technology row. Skill names are bullets on the cards. Pictures are only for that moving row."
         fields={[
           { key: "skillsTitle", label: "Heading" },
           { key: "skillsPageTitle", label: "Page title" },
@@ -128,7 +127,7 @@ export default function AdminSkillsPage() {
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {skillEntries(skill).map((entry) => (
                         <div key={entry.name} className="flex items-center gap-2 rounded-md border border-border/70 px-2 py-1.5">
-                            <SkillPicture name={entry.name} image={entry.image} className="h-7 w-7 shrink-0" />
+                            <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
                             <span className="truncate text-sm">{entry.name}</span>
                         </div>
                     ))}

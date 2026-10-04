@@ -9,7 +9,6 @@ import { supabase } from "@/lib/supabase"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mydata } from "@/lib/data"
 import { skillEntries } from "@/lib/skill-entries"
-import { SkillPicture } from "@/lib/skill-icons"
 import { useSiteContent } from "@/components/site-content"
 
 export function Skills({ isPage = false }) {
@@ -136,11 +135,7 @@ function CategoryCard({ cat, index }) {
         <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-4">
           {entries.map((skill) => (
             <li key={skill.name} className="flex items-center gap-2 text-sm text-muted-foreground">
-              {skill.image ? (
-                <SkillPicture name={skill.name} image={skill.image} className="h-4 w-4 shrink-0" />
-              ) : (
-                <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
-              )}
+              <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
               <span>{skill.name}</span>
             </li>
           ))}
