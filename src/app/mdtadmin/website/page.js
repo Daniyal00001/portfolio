@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
@@ -41,7 +41,7 @@ const CONTACT_LONG = [
   ["contactPageBody", "Contact page intro"],
 ]
 
-export default function WebsitePage() {
+function WebsiteEditor() {
   const searchParams = useSearchParams()
   const section = searchParams.get("section") === "contact" ? "contact" : "about"
   const [loading, setLoading] = useState(true)
@@ -235,6 +235,14 @@ export default function WebsitePage() {
 
       {section === "contact" && <ContactInbox />}
     </form>
+  )
+}
+
+export default function WebsitePage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center p-8"><Loader2 className="animate-spin" /></div>}>
+      <WebsiteEditor />
+    </Suspense>
   )
 }
 
