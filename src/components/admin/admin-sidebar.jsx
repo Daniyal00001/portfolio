@@ -12,6 +12,7 @@ import {
   Menu,
   User,
   Mail,
+  Inbox,
   FolderKanban,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ const sidebarItems = [
   { title: "Projects", href: "/mdtadmin", icon: FolderKanban },
   { title: "Education", href: "/mdtadmin/education", icon: GraduationCap },
   { title: "Contact", href: "/mdtadmin/website?section=contact", icon: Mail },
+  { title: "Messages", href: "/mdtadmin/messages", icon: Inbox },
 ];
 
 function isSidebarItemActive(href, pathname, searchParams) {

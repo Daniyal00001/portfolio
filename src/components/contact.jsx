@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Mail, MessageSquare, Send, ExternalLink, Phone } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import { Mail, MessageSquare, Send, Phone, Loader2 } from "lucide-react"
+import { toast } from "sonner"
+import { sendContactMessage } from "@/actions/messages"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -18,47 +19,28 @@ export function Contact() {
    const publicEmail = profile?.email || Mydata.Email
    const publicPhone = profile?.phone || content.phone
    const formRef = React.useRef(null)
-   const [feedback, setFeedback] = React.useState(null)
+   const [sending, setSending] = React.useState(false)
 
    const sendMessage = async (e) => {
       e.preventDefault()
-      setFeedback(null)
+      if (sending) return
 
       const formData = new FormData(formRef.current)
-      const name = formData.get("from_name")
-      const email = formData.get("from_email")
-      const message = formData.get("message")
+      setSending(true)
+      const result = await sendContactMessage({
+         name: formData.get("from_name"),
+         email: formData.get("from_email"),
+         message: formData.get("message"),
+      })
+      setSending(false)
 
-      // Build Gmail compose URL
-      const subject = encodeURIComponent(`Portfolio Inquiry — ${name}`)
-      const body = encodeURIComponent(
-         `Hello ${profile?.name || "there"},
-
-A new message has been received from your portfolio contact form.
-
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-
---
-This message was sent via the portfolio contact form.`
-      )
-
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${publicEmail}&su=${subject}&body=${body}`
-
-      // Save to Supabase (optional backup)
-      try {
-         await supabase.from("messages").insert([{ name, email, message }])
-      } catch (dbErr) {
-         console.warn("Supabase save skipped:", dbErr)
+      if (!result.success) {
+         toast.error(result.error || "Could not send your message.")
+         return
       }
 
-      // Open Gmail compose in new tab
-      window.open(gmailUrl, "_blank")
-      setFeedback({ type: "success", message: "Gmail opened! Please click Send in the new tab." })
-      formRef.current.reset()
+      toast.success("Message sent. I'll get back to you soon.")
+      formRef.current?.reset()
    }
 
    return (
@@ -152,7 +134,7 @@ This message was sent via the portfolio contact form.`
                   <CardHeader>
                      <CardTitle>Send a Message</CardTitle>
                      <CardDescription>
-                        Fill out the form below — Gmail will open with your message ready to send.
+                        Fill out the form below and I&apos;ll get back to you.
                      </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -170,14 +152,9 @@ This message was sent via the portfolio contact form.`
                            <Textarea id="message" name="message" placeholder="Tell me about your project..." className="min-h-[120px] bg-card/80 border-border focus-visible:ring-primary" required />
                         </div>
 
-                        {feedback && (
-                           <div className={`p-3 rounded-md text-sm ${feedback.type === 'success' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive'}`}>
-                              {feedback.message}
-                           </div>
-                        )}
-
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-                           <Send className="mr-2 h-4 w-4" /> Send Message
+                        <Button type="submit" disabled={sending} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
+                           {sending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                           {sending ? "Sending..." : "Send Message"}
                         </Button>
                      </form>
                   </CardContent>
