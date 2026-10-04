@@ -42,14 +42,6 @@ export function Projects({ isPage = false }) {
     fetchProjects()
   }, [])
 
-  if (loading && projects.length === 0) {
-    return (
-      <div className="flex justify-center p-24">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    )
-  }
-
   return (
     <section id="projects" className={isPage ? "w-full" : "relative container py-12 md:py-24 lg:py-32"}>
       {!isPage && (
@@ -74,6 +66,12 @@ export function Projects({ isPage = false }) {
           </p>
         </div>
       )}
+
+      {loading && projects.length === 0 ? (
+        <div className="relative z-10 flex justify-center p-24">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : null}
 
       <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 z-10">
         {projects.map((project, index) => (

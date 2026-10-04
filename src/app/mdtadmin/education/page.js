@@ -108,7 +108,11 @@ export default function AdminEducationPage() {
                 <div className="flex justify-between items-start">
                     <div className="flex gap-4">
                         <div className="mt-1">
-                            <GraduationCap className="h-6 w-6 text-verdigris" />
+                            {edu.logo_url ? (
+                              <img src={edu.logo_url} alt="" className="h-12 w-12 shrink-0 rounded-md border border-border bg-white object-contain p-0.5" />
+                            ) : (
+                              <GraduationCap className="h-6 w-6 text-verdigris" />
+                            )}
                         </div>
                         <div>
                             <h3 className="text-xl font-bold">{edu.degree}</h3>

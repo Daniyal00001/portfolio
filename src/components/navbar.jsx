@@ -53,26 +53,31 @@ export function Navbar() {
   }
 
   React.useEffect(() => {
-    // Only run scroll spy on Home page
-    if (pathname !== "/") return;
+    if (pathname !== "/") return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id
-            if (id === "home") setActiveSection("/")
-            else setActiveSection(`/${id}`)
-          }
-        })
-      },
-      { rootMargin: "-30% 0px -70% 0px" } // Adjusted logic for better trigger
-    )
+    const update = () => {
+      const sections = [...document.querySelectorAll("section[id]")]
+      if (sections.length === 0) return
+      const line = 120
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      let current = sections[0].id
+      if (atBottom) {
+        current = sections[sections.length - 1].id
+      } else {
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top <= line) current = section.id
+        }
+      }
+      setActiveSection(current === "home" ? "/" : `/${current}`)
+    }
 
-    const sections = document.querySelectorAll("section[id]")
-    sections.forEach((section) => observer.observe(section))
-
-    return () => sections.forEach((section) => observer.unobserve(section))
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("resize", update)
+    return () => {
+      window.removeEventListener("scroll", update)
+      window.removeEventListener("resize", update)
+    }
   }, [pathname])
 
   return (
@@ -139,7 +144,7 @@ export function Navbar() {
                     onClick={(e) => handleNavClick(e, item.href)}
                     className={cn(
                       "text-lg font-medium transition-all hover:translate-x-2",
-                      pathname === item.href
+                      (pathname === "/" ? activeSection === item.href : pathname === item.href)
                         ? "text-primary font-bold translate-x-2"
                         : "text-foreground"
                     )}

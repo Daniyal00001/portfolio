@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AssetField } from "@/components/admin/asset-field";
 
 export function EducationModal({
   open,
@@ -23,6 +24,8 @@ export function EducationModal({
     degree: "",
     university: "",
     period: "",
+    logo_url: "",
+    website: "",
   });
 
   useEffect(() => {
@@ -33,6 +36,8 @@ export function EducationModal({
           degree: initialData.degree,
           university: initialData.university,
           period: initialData.period,
+          logo_url: initialData.logo_url || "",
+          website: initialData.website || "",
         });
       } else {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,6 +45,8 @@ export function EducationModal({
           degree: "",
           university: "",
           period: "",
+          logo_url: "",
+          website: "",
         });
       }
     }
@@ -47,7 +54,7 @@ export function EducationModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit({ ...formData, website: (formData.website || "").trim() });
   };
 
   return (
@@ -84,6 +91,26 @@ export function EducationModal({
               required
             />
           </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="website">Website</Label>
+            <Input
+              id="website"
+              placeholder="https://"
+              value={formData.website || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, website: e.target.value })
+              }
+            />
+          </div>
+
+          <AssetField
+            label="School logo"
+            hint="Shown beside this degree. Upload a square mark if you can."
+            value={formData.logo_url || ""}
+            folder="education"
+            onChange={(logo_url) => setFormData({ ...formData, logo_url })}
+          />
 
           <div className="space-y-2">
             <Label htmlFor="period">Period</Label>

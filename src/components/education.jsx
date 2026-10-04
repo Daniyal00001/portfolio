@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Calendar, GraduationCap, Loader2 } from "lucide-react"
+import { ArrowUpRight, Award, Calendar, GraduationCap, Loader2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 
@@ -14,14 +14,59 @@ const FALLBACK = [
     degree: "BS (Hons) in Computer Science",
     university: "Government College University, Lahore",
     period: "2022 – 2026 · CGPA 3.14",
+    logo_url: "/assets/logos/gcu.png",
+    website: "https://gcu.edu.pk/",
   },
   {
     id: "fsc",
     degree: "FSc Pre-Engineering",
     university: "Punjab College of Science, Lahore",
     period: "2020 – 2022 · 961/1100",
+    logo_url: "/assets/logos/pgc.png",
+    website: "https://pgc.edu/",
   },
 ]
+
+function SchoolLogo({ src, name, href }) {
+  const mark = src ? (
+    <img
+      src={src}
+      alt={name}
+      className="h-12 w-12 shrink-0 rounded-md border border-border bg-white object-contain p-0.5"
+    />
+  ) : (
+    <GraduationCap className="mt-1 h-5 w-5 shrink-0 text-primary" />
+  )
+  const url = safeUrl(href)
+  if (!url) return mark
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="shrink-0" aria-label={`${name} (opens in a new tab)`}>
+      {mark}
+    </a>
+  )
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(String(value || ""))
+    if (url.protocol === "http:" || url.protocol === "https:") return url.href
+  } catch {
+    return ""
+  }
+  return ""
+}
+
+function SchoolLink({ href, children }) {
+  const url = safeUrl(href)
+  if (!url) return children
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="hover:text-foreground">
+      {children}
+      <ArrowUpRight className="ml-1 inline h-4 w-4 align-[-3px] text-foreground/80" aria-hidden="true" />
+      <span className="sr-only">Opens in a new tab</span>
+    </a>
+  )
+}
 
 function present(row) {
   const parts = String(row.period || "")
@@ -107,14 +152,16 @@ export function Education({ isPage = false }) {
               <Card className="border border-border bg-card/80 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_24px_-12px_color-mix(in_oklch,var(--primary)_45%,transparent)]">
                 <CardContent className="space-y-4 p-5 sm:p-6">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="space-y-1">
-                      <h3 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-                        {item.degree}
-                      </h3>
-                      <p className="flex items-start gap-2 text-sm font-medium text-muted-foreground">
-                        <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        {item.university}
-                      </p>
+                    <div className="flex min-w-0 items-start gap-3">
+                      <SchoolLogo src={item.logo_url} name={item.university} href={item.website} />
+                      <div className="min-w-0 space-y-1">
+                        <h3 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                          {item.degree}
+                        </h3>
+                        <p className="text-balance text-sm font-medium text-muted-foreground">
+                          <SchoolLink href={item.website}>{item.university}</SchoolLink>
+                        </p>
+                      </div>
                     </div>
                     {item.duration ? (
                       <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-medium text-primary">
