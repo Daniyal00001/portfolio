@@ -9,9 +9,11 @@ const SiteContentContext = createContext({
   content: DEFAULT_CONTENT,
 })
 
-export function SiteContentProvider({ children }) {
-  const [profile, setProfile] = useState(null)
-  const [content, setContent] = useState(DEFAULT_CONTENT)
+export function SiteContentProvider({ children, initialProfile = null }) {
+  const [profile, setProfile] = useState(initialProfile)
+  const [content, setContent] = useState(
+    initialProfile ? mergeContent(initialProfile.content) : DEFAULT_CONTENT
+  )
 
   useEffect(() => {
     let cancelled = false

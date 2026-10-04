@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
+import { unstable_noStore as noStore } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -34,6 +35,7 @@ const PROFILE_IMAGE = `${SITE_URL}/assets/images/profile.jpg`;
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 async function getProfile() {
+  noStore();
   try {
     const { data } = await supabase.from("profiles").select("*").single();
     return data;
@@ -135,7 +137,7 @@ export default async function RootLayout({ children }) {
       </head>
       <body className={`${sora.variable} ${figtree.variable} ${jetbrainsMono.variable} antialiased body min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <LayoutWrapper>{children}</LayoutWrapper>
+          <LayoutWrapper initialProfile={profile}>{children}</LayoutWrapper>
           <Toaster />
         </ThemeProvider>
       </body>

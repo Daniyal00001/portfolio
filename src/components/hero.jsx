@@ -27,7 +27,7 @@ export function Hero() {
       Medium: row?.social_medium || content.mediumUrl,
     },
     ResumeUrl: row?.resume_url || content.resumeFallback,
-    ImageUrl: row?.image_url || content.portraitFallback,
+    ImageUrl: row?.image_url || (row ? content.portraitFallback : ""),
   }
   const [loading, setLoading] = useState(true);
   // null until the real span is computed, so the hero never flashes a wrong, lower number.
