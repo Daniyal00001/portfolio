@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExperienceModal } from "@/components/admin/experience-modal";
 import { saveExperienceAction, deleteExperienceAction } from "@/actions/experience";
 import { toast } from "sonner";
+import { SectionCopy } from "@/components/admin/section-copy";
 
 export default function AdminExperiencePage() {
   const [experiences, setExperiences] = useState([]);
@@ -85,11 +86,24 @@ export default function AdminExperiencePage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">Experience Management</h1>
+        <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">Experience</h1>
         <Button onClick={handleCreate} className="bg-burnt-peach hover:bg-burnt-peach/90 text-white">
           <Plus className="mr-2 h-4 w-4" /> Add Experience
         </Button>
       </div>
+
+      <SectionCopy
+        title="Experience text"
+        description="Headings shown on the Experience tab."
+        fields={[
+          { key: "experienceTitle", label: "Heading" },
+          { key: "experiencePageTitle", label: "Page title" },
+          { key: "experienceDevHeading", label: "Group heading" },
+          { key: "experienceOtherHeading", label: "Other roles heading" },
+          { key: "experienceBody", label: "Intro", long: true },
+          { key: "experiencePageBody", label: "Page intro", long: true },
+        ]}
+      />
 
       <div className="grid gap-4">
         {experiences.map((exp) => (

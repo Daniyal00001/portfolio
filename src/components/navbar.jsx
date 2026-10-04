@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -23,44 +23,33 @@ const navItems = [
   { name: "Skills", href: "/skills" },
   { name: "Experience", href: "/experience" },
   { name: "Projects", href: "/projects" },
-  { name: "Blog", href: "/blog" },
-  { name: "Achievements", href: "/achievements" },
+  { name: "Education", href: "/education" },
   { name: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { content } = useSiteContent()
   const [isOpen, setIsOpen] = React.useState(false)
   const [activeSection, setActiveSection] = React.useState("/")
 
   const handleNavClick = (e, href) => {
-    setIsOpen(false);
+    e.preventDefault()
+    setIsOpen(false)
 
-    // Logic: If on home page and link is for a section, scroll to it.
-    // If link is Home ('/'), scroll to top.
     if (pathname === "/") {
-      e.preventDefault();
-      let targetId = "";
-
-      if (href === "/") targetId = "home";
-      else if (href === "/skills") targetId = "skills";
-      else if (href === "/experience") targetId = "experience";
-      else if (href === "/projects") targetId = "projects";
-      else if (href === "/achievements") targetId = "achievements";
-      else if (href === "/contact") targetId = "contact";
-
-      const element = document.getElementById(targetId);
+      const targetId = href === "/" ? "home" : href.replace(/^\//, "")
+      const element = document.getElementById(targetId)
       if (element) {
-        // Update URL hash without reload
-        window.history.pushState({}, "", href === "/" ? "/" : `#${targetId}`);
-        // Scroll
-        const yOffset = -64; // Navbar height
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        window.history.pushState({}, "", href === "/" ? "/" : `#${targetId}`)
+        const y = element.getBoundingClientRect().top + window.scrollY - 64
+        window.scrollTo({ top: y, behavior: "smooth" })
+        return
       }
     }
-    // Else: Let standard navigation happen to the separate page
+
+    router.push(href)
   }
 
   React.useEffect(() => {
@@ -147,7 +136,7 @@ export function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className={cn(
                       "text-lg font-medium transition-all hover:translate-x-2",
                       pathname === item.href

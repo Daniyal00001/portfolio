@@ -146,7 +146,7 @@ export function DashboardStats() {
       value: stats.achievements,
       sub: "Press and milestones",
       icon: Trophy,
-      href: "/mdtadmin#achievements",
+      href: "/mdtadmin?tab=achievements",
     },
     {
       label: "Unread messages",

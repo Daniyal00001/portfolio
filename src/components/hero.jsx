@@ -30,20 +30,12 @@ export function Hero() {
     ImageUrl: row?.image_url || content.portraitFallback,
   }
   const [loading, setLoading] = useState(true);
-  const [projectCount, setProjectCount] = useState(0);
   // null until the real span is computed, so the hero never flashes a wrong, lower number.
   const [experienceYears, setExperienceYears] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch Projects Count
-        const { count: pCount } = await supabase
-          .from('projects')
-          .select('*', { count: 'exact', head: true });
-
-        if (pCount !== null) setProjectCount(pCount);
-
         // Fetch Experience to calculate years
         const { data: expData } = await supabase
           .from('experience')
@@ -144,6 +136,36 @@ export function Hero() {
     show: { y: 0, opacity: 1 },
   }
 
+  async function downloadResume(event) {
+    const href = event.currentTarget.getAttribute("href")
+    if (!href) return
+    event.preventDefault()
+    const fallbackName = "Muhammad Daniyal Tallat.pdf"
+    let fileName = fallbackName
+    try {
+      fileName = decodeURIComponent(href.split("/").pop() || fallbackName)
+    } catch {
+      fileName = fallbackName
+    }
+    if (!fileName.toLowerCase().endsWith(".pdf")) fileName = fallbackName
+    try {
+      const response = await fetch(href)
+      if (!response.ok) throw new Error("resume missing")
+      const blob = await response.blob()
+      const file = new Blob([blob], { type: "application/pdf" })
+      const url = URL.createObjectURL(file)
+      const link = document.createElement("a")
+      link.href = url
+      link.download = fileName
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      window.location.assign(href)
+    }
+  }
+
   return (
     <section id="home" className="relative min-h-[calc(100vh-4rem)] w-full py-12 md:py-24 lg:py-32 flex items-center justify-center">
       {/* Interactive WebGL ether — the hero's one authored moment. */}
@@ -182,7 +204,7 @@ export function Hero() {
               <h2 className="text-xl sm:text-2xl font-medium text-muted-foreground">
                 <span className="text-primary">&lt;Dev&gt;</span> {profile.Role} <span className="text-primary">/&gt;</span>
               </h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[36rem] text-sm leading-relaxed text-muted-foreground sm:text-base sm:leading-7">
                 {experienceYears
                   ? profile.Summary?.replace(/over \d+ year(s?)/, `over ${experienceYears} year${experienceYears > 1 ? 's' : ''}`)
                   : profile.Summary}
@@ -194,7 +216,13 @@ export function Hero() {
                 <a href="/projects">{content.viewProjects} <ArrowRight className="ml-2 h-4 w-4" /></a>
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground bg-transparent" asChild>
-                <a href={profile.ResumeUrl || content.resumeFallback} download>{content.downloadCv} <Download className="ml-2 h-4 w-4" /></a>
+                <a
+                  href={profile.ResumeUrl || content.resumeFallback}
+                  download="Muhammad Daniyal Tallat.pdf"
+                  onClick={downloadResume}
+                >
+                  {content.downloadCv} <Download className="ml-2 h-4 w-4" />
+                </a>
               </Button>
             </motion.div>
 
@@ -223,11 +251,16 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center justify-center lg:justify-end"
           >
-            <div className="relative group">
-              {/* Red glow behind the card */}
-              <div className="absolute -inset-4 rounded-xl bg-primary/10 blur-2xl group-hover:bg-primary/20 transition-all duration-500" />
+            <div className="group relative w-full max-w-xs lg:mr-16">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-[2px] overflow-hidden rounded-[14px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
+              >
+                <div className="absolute inset-0 bg-primary/30" />
+                <div className="absolute left-1/2 top-1/2 aspect-square w-[160%] -translate-x-1/2 -translate-y-1/2 animate-spin bg-[conic-gradient(from_0deg,transparent_0deg,transparent_230deg,color-mix(in_oklch,var(--primary)_40%,transparent)_280deg,var(--primary)_330deg,transparent_360deg)] [animation-duration:5.5s] motion-reduce:animate-none" />
+              </div>
 
-              <Card className="relative p-0 overflow-hidden border border-border bg-card/80 backdrop-blur-xl w-full max-w-md rotate-3 hover:rotate-0 transition-transform duration-300 shadow-2xl">
+              <Card className="relative w-full overflow-hidden border border-border bg-card p-0 shadow-2xl">
                 <CardContent className="p-0">
                   <div className="relative aspect-square overflow-hidden bg-muted">
                     {/* Image with Grayscale Filter */}
@@ -262,14 +295,10 @@ export function Hero() {
                     <div className="space-y-2 font-mono text-sm border-t border-border pt-4">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">{content.experienceStat}</span>
-                        <span className="text-foreground">{experienceYears ? `${experienceYears}+ Years` : "—"}</span>
+                        <span className="text-foreground">{content.experienceValue}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">{content.projectsStat}</span>
-                        <span className="text-foreground">{projectCount}+</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-foreground">{content.stackStat}</span>
+                        <span className="text-muted-foreground">{content.stackStat}</span>
                         <span className="text-foreground">{content.stackValue}</span>
                       </div>
                     </div>

@@ -1,21 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Briefcase,
   GraduationCap,
   Wrench,
-  Users,
-  MessageSquare,
-  Settings,
   LogOut,
   Menu,
-  Trophy,
-  PenLine,
-  Globe,
+  User,
+  Mail,
+  FolderKanban,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -25,60 +22,29 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 const sidebarItems = [
-  {
-    title: "Dashboard",
-    href: "/mdtadmin",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Website",
-    href: "/mdtadmin/website",
-    icon: Globe,
-  },
-  {
-    title: "Blog",
-    href: "/mdtadmin/blog",
-    icon: PenLine,
-  },
-  {
-    title: "Experience",
-    href: "/mdtadmin/experience",
-    icon: Briefcase,
-  },
-  {
-    title: "Education",
-    href: "/mdtadmin/education",
-    icon: GraduationCap,
-  },
-  {
-    title: "Skills",
-    href: "/mdtadmin/skills",
-    icon: Wrench,
-  },
-  {
-    title: "Messages",
-    href: "/mdtadmin/messages",
-    icon: MessageSquare,
-  },
-  {
-    title: "Users",
-    href: "/mdtadmin/users",
-    icon: Users,
-  },
-  {
-    title: "Achievements",
-    href: "/mdtadmin#achievements",
-    icon: Trophy,
-  },
-  {
-    title: "Settings",
-    href: "/mdtadmin/profile",
-    icon: Settings,
-  },
+  { title: "About", href: "/mdtadmin/website?section=about", icon: User },
+  { title: "Skills", href: "/mdtadmin/skills", icon: Wrench },
+  { title: "Experience", href: "/mdtadmin/experience", icon: Briefcase },
+  { title: "Projects", href: "/mdtadmin", icon: FolderKanban },
+  { title: "Education", href: "/mdtadmin/education", icon: GraduationCap },
+  { title: "Contact", href: "/mdtadmin/website?section=contact", icon: Mail },
 ];
+
+function isSidebarItemActive(href, pathname, searchParams) {
+  const [path, query = ""] = href.split("?");
+  const wanted = new URLSearchParams(query);
+  if (path === "/mdtadmin") return pathname === "/mdtadmin";
+  if (pathname !== path && !pathname.startsWith(`${path}/`)) return false;
+  if (path === "/mdtadmin/website") {
+    const section = searchParams.get("section") || "about";
+    return section === (wanted.get("section") || "about");
+  }
+  return true;
+}
 
 export function AdminSidebar({ className }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -110,7 +76,7 @@ export function AdminSidebar({ className }) {
 
       <div className="flex-1 px-4 py-2 space-y-1 overflow-y-auto custom-scrollbar  max-h-[calc(100vh-40px)]">
         {sidebarItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = isSidebarItemActive(item.href, pathname, searchParams);
           return (
             <Link
               key={item.href}

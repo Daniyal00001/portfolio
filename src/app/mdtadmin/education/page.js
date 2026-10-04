@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Plus, Pencil, Trash2, GraduationCap } from "lucide-react";
 import { EducationModal } from "@/components/admin/education-modal";
+import { SectionCopy } from "@/components/admin/section-copy";
 
 export default function AdminEducationPage() {
   const [education, setEducation] = useState([]);
@@ -82,12 +83,23 @@ export default function AdminEducationPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">
-          Education Management
+          Education
         </h1>
         <Button onClick={handleCreate} className="bg-burnt-peach hover:bg-burnt-peach/90 text-white">
           <Plus className="mr-2 h-4 w-4" /> Add Education
         </Button>
       </div>
+
+      <SectionCopy
+        title="Education text"
+        description="Headings shown on the Education tab."
+        fields={[
+          { key: "educationTitle", label: "Heading" },
+          { key: "educationPageTitle", label: "Page title" },
+          { key: "educationBody", label: "Intro", long: true },
+          { key: "educationPageBody", label: "Page intro", long: true },
+        ]}
+      />
 
       <div className="grid gap-4">
         {education.map((edu) => (

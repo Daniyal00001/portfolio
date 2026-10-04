@@ -8,7 +8,7 @@ const staticRoutes = [
   { path: "/skills", changeFrequency: "monthly", priority: 0.8 },
   { path: "/experience", changeFrequency: "monthly", priority: 0.8 },
   { path: "/projects", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/achievements", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/education", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.6 },
 ]
 

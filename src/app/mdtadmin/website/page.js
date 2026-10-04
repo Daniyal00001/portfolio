@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,65 +9,41 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Loader2, Save } from "lucide-react"
-import { MediaUploader } from "@/components/admin/media-uploader"
+import { AssetField } from "@/components/admin/asset-field"
 import { DEFAULT_CONTENT, mergeContent } from "@/lib/site-defaults"
+import { ContactInbox } from "@/components/admin/contact-inbox"
 
-const COPY_FIELDS = [
-  ["location", "Hero location"],
-  ["availability", "Availability label"],
+const ABOUT_FIELDS = [
+  ["location", "Location"],
+  ["availability", "Availability"],
   ["viewProjects", "Projects button"],
   ["downloadCv", "CV button"],
+  ["experienceStat", "Experience label"],
+  ["experienceValue", "Experience value"],
   ["stackStat", "Stack label"],
   ["stackValue", "Stack value"],
-  ["experienceStat", "Experience label"],
-  ["projectsStat", "Projects label"],
-  ["techEyebrow", "Tech eyebrow"],
-  ["techTitle", "Tech heading"],
-  ["skillsTitle", "Skills heading"],
-  ["skillsPageTitle", "Skills page title"],
-  ["experienceTitle", "Experience heading"],
-  ["experienceDevHeading", "Experience group heading"],
-  ["experienceOtherHeading", "Other experience heading"],
-  ["experiencePageTitle", "Experience page title"],
-  ["projectsTitle", "Projects heading"],
-  ["projectsPageTitle", "Projects page title"],
-  ["achievementsTitle", "Achievements heading"],
-  ["achievementsPageTitle", "Achievements page title"],
-  ["contactTitle", "Contact heading"],
-  ["contactInfoTitle", "Contact info heading"],
-  ["contactPageTitle", "Contact page title"],
-  ["whatsappLabel", "WhatsApp label"],
-  ["responseTime", "Response time"],
-  ["phone", "Phone shown on the site"],
-  ["whatsappUrl", "WhatsApp link"],
   ["mediumUrl", "Medium link, used when the profile Medium field is empty"],
 ]
 
-const LONG_FIELDS = [
-  ["techBody", "Tech intro"],
-  ["skillsBody", "Skills intro"],
-  ["skillsPageBody", "Skills page intro"],
-  ["experienceBody", "Experience intro"],
-  ["experiencePageBody", "Experience page intro"],
-  ["projectsBody", "Projects intro"],
-  ["projectsPageBody", "Projects page intro"],
-  ["achievementsBody", "Achievements intro"],
+const CONTACT_FIELDS = [
+  ["phone", "Phone fallback"],
+  ["whatsappUrl", "WhatsApp link"],
+  ["whatsappLabel", "WhatsApp label"],
+  ["responseTime", "Response time"],
+  ["contactTitle", "Contact heading"],
+  ["contactInfoTitle", "Contact info heading"],
+  ["contactPageTitle", "Contact page title"],
+]
+
+const CONTACT_LONG = [
   ["contactBody", "Contact intro"],
   ["contactInfoBody", "Contact details text"],
   ["contactPageBody", "Contact page intro"],
 ]
 
-function OneImage({ label, value, onChange }) {
-  return (
-    <MediaUploader
-      label={label}
-      value={value ? [value] : []}
-      onChange={(urls) => onChange(urls[urls.length - 1] || "")}
-    />
-  )
-}
-
 export default function WebsitePage() {
+  const searchParams = useSearchParams()
+  const section = searchParams.get("section") === "contact" ? "contact" : "about"
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [userId, setUserId] = useState(null)
@@ -140,21 +117,26 @@ export default function WebsitePage() {
     <form onSubmit={save} className="mx-auto max-w-4xl space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">Website</h1>
+          <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">
+            {section === "contact" ? "Contact" : "About"}
+          </h1>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Text and images for the public site. Projects, skills, experience, education, achievements, and blog posts stay on their own pages in the sidebar.
+            {section === "contact"
+              ? "The phone, email, and text shown on the Contact tab."
+              : "The name, photo, summary, and stats shown on the About tab."}
           </p>
         </div>
         <Button type="submit" disabled={saving}>
           {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-          Save website
+          Save {section === "contact" ? "contact" : "about"}
         </Button>
       </div>
 
+      {section === "about" && <>
       <Card>
         <CardHeader>
           <CardTitle>Identity</CardTitle>
-          <CardDescription>Name, bio, contact, and social links shown on the site.</CardDescription>
+          <CardDescription>Name, bio, and links shown on the About tab.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-2">
           <Field label="Full name" value={profile.name} onChange={(value) => setProfile({ ...profile, name: value })} />
@@ -163,16 +145,30 @@ export default function WebsitePage() {
             <Label>Summary</Label>
             <Textarea className="mt-2 min-h-[120px]" value={profile.summary} onChange={(e) => setProfile({ ...profile, summary: e.target.value })} />
           </div>
-          <Field label="Email" value={profile.email} onChange={(value) => setProfile({ ...profile, email: value })} />
-          <Field label="Phone" value={profile.phone} onChange={(value) => setProfile({ ...profile, phone: value })} />
           <Field label="Address" value={profile.address} onChange={(value) => setProfile({ ...profile, address: value })} />
-          <Field label="Resume URL" value={profile.resume_url} onChange={(value) => setProfile({ ...profile, resume_url: value })} />
           <Field label="LinkedIn" value={profile.social_linkedin} onChange={(value) => setProfile({ ...profile, social_linkedin: value })} />
           <Field label="GitHub" value={profile.social_github} onChange={(value) => setProfile({ ...profile, social_github: value })} />
           <Field label="Medium" value={profile.social_medium} onChange={(value) => setProfile({ ...profile, social_medium: value })} />
           <Field label="Portfolio URL" value={profile.social_portfolio} onChange={(value) => setProfile({ ...profile, social_portfolio: value })} />
           <div className="md:col-span-2">
-            <OneImage label="Profile photo" value={profile.image_url} onChange={(value) => setProfile({ ...profile, image_url: value })} />
+            <AssetField
+              label="Profile photo"
+              hint="The portrait on the About card. Uploading replaces the current photo."
+              value={profile.image_url}
+              onChange={(value) => setProfile({ ...profile, image_url: value })}
+              kind="image"
+              folder="profile"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <AssetField
+              label="CV"
+              hint="The file behind Download CV. Uploading stores the PDF and the site serves that file."
+              value={profile.resume_url}
+              onChange={(value) => setProfile({ ...profile, resume_url: value })}
+              kind="pdf"
+              folder="cv"
+            />
           </div>
         </CardContent>
       </Card>
@@ -180,24 +176,54 @@ export default function WebsitePage() {
       <Card>
         <CardHeader>
           <CardTitle>Logos</CardTitle>
-          <CardDescription>Light logo shows in light mode. Dark logo shows in dark mode.</CardDescription>
+          <CardDescription>Each logo has its own upload. Light logo shows in light mode. Dark logo shows in dark mode.</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-6 md:grid-cols-2">
-          <OneImage label="Light logo" value={content.logoLight} onChange={(value) => setField("logoLight", value)} />
-          <OneImage label="Dark logo" value={content.logoDark} onChange={(value) => setField("logoDark", value)} />
+        <CardContent className="grid gap-8 md:grid-cols-2">
+          <AssetField
+            label="Light logo"
+            hint="Dark mark, shown on a light background."
+            value={content.logoLight}
+            onChange={(value) => setField("logoLight", value)}
+            kind="image"
+            folder="logos"
+          />
+          <AssetField
+            label="Dark logo"
+            hint="Light mark, shown on a dark background."
+            value={content.logoDark}
+            onChange={(value) => setField("logoDark", value)}
+            kind="image"
+            folder="logos"
+          />
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Headings and labels</CardTitle>
-          <CardDescription>Every short line of copy on the public pages.</CardDescription>
+          <CardTitle>Hero</CardTitle>
+          <CardDescription>The lines on the About card.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-2">
-          {COPY_FIELDS.map(([key, label]) => (
+          {ABOUT_FIELDS.map(([key, label]) => (
             <Field key={key} label={label} value={content[key] || ""} onChange={(value) => setField(key, value)} />
           ))}
-          {LONG_FIELDS.map(([key, label]) => (
+        </CardContent>
+      </Card>
+      </>}
+
+      {section === "contact" && (
+      <Card>
+        <CardHeader>
+          <CardTitle>Contact details</CardTitle>
+          <CardDescription>Shown on the Contact tab.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4 md:grid-cols-2">
+          <Field label="Email" value={profile.email} onChange={(value) => setProfile({ ...profile, email: value })} />
+          <Field label="Phone" value={profile.phone} onChange={(value) => setProfile({ ...profile, phone: value })} />
+          {CONTACT_FIELDS.map(([key, label]) => (
+            <Field key={key} label={label} value={content[key] || ""} onChange={(value) => setField(key, value)} />
+          ))}
+          {CONTACT_LONG.map(([key, label]) => (
             <div key={key} className="md:col-span-2 space-y-2">
               <Label>{label}</Label>
               <Textarea value={content[key] || ""} onChange={(e) => setField(key, e.target.value)} />
@@ -205,23 +231,9 @@ export default function WebsitePage() {
           ))}
         </CardContent>
       </Card>
+      )}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Technology logos</CardTitle>
-          <CardDescription>
-            One name per line. React, Next.js, TypeScript, JavaScript, Node.js, Python, Tailwind, PostgreSQL, Supabase, Firebase, Git, and Figma use their brand marks. Any other name is shown as text. Add an image with Name|https://image-url.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Textarea className="min-h-[220px] font-mono text-sm" value={content.techs} onChange={(e) => setField("techs", e.target.value)} />
-        </CardContent>
-      </Card>
-
-      <Button type="submit" disabled={saving}>
-        {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-        Save website
-      </Button>
+      {section === "contact" && <ContactInbox />}
     </form>
   )
 }

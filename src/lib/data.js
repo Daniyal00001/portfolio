@@ -13,7 +13,7 @@ export const Mydata = {
     Medium: ""
   },
   Summary:
-    "Software Engineer with 1.5 years of production experience building scalable, high-performance applications from frontend to backend. Skilled in React, Next.js, Angular, Node.js, Express and Django (DRF), with solid command of MySQL, MongoDB, Redis, GraphQL and REST API design. Strong grounding in OOP, data structures and DBMS, with a focus on clean, maintainable code and full ownership of every feature, from database design to deployment.",
+    "Software Engineer with 2+ years of production experience building scalable, high-performance applications from frontend to backend. Skilled in React, Next.js, Angular, Node.js, Express and Django (DRF), with solid command of MySQL, MongoDB, Redis, GraphQL and REST API design. Strong grounding in OOP, data structures and DBMS, with a focus on clean, maintainable code and full ownership of every feature, from database design to deployment.",
   Education: {
     Degree: "BS (Hons) in Computer Science",
     Period: "2022 – 2026",
@@ -80,11 +80,11 @@ export const Mydata = {
   Skills: {
     Languages: ["JavaScript (ES6+)", "TypeScript", "Python", "C++", "HTML5", "CSS3"],
     Frontend: ["React.js", "Next.js", "Angular", "Redux", "Vite", "Tailwind CSS", "ShadCN UI", "Radix UI", "Responsive Design"],
-    Backend: ["Node.js", "Express.js", "Django", "Django REST Framework", "FastAPI", "REST API design", "GraphQL", "Rate Limiting"],
+    Backend: ["Node.js", "Express.js", "Django", "Django REST Framework", "FastAPI", "REST API Design", "GraphQL", "Rate Limiting"],
     "Databases & ORM": ["MySQL", "MongoDB", "Redis", "Prisma ORM", "Mongoose", "Schema Design", "Query Optimization"],
-    "Auth & Realtime": ["JWT Authentication", "Socket.io", "Nodemailer", "Multer", "JSPDF"],
+    "Auth & Realtime": ["JWT Authentication", "Socket.io", "Nodemailer", "Multer", "jsPDF"],
     "Cloud & DevOps": ["AWS", "Docker", "CI/CD Pipelines", "GitHub Actions"],
-    Tools: ["Git & GitHub", "Postman", "VS Code", "MySQL Workbench", "MongoDB Compass"],
+    Tools: ["Git", "GitHub", "Postman", "VS Code", "MySQL Workbench", "MongoDB Compass"],
     "Core Concepts": ["OOP", "Data Structures & Algorithms", "DBMS"],
     Practices: ["Manual SQA Testing", "Agile/Scrum", "Sprint Planning", "Code Reviews", "Role-Based Access Control"]
   }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
 import { SessionGuard } from "@/components/admin/session-guard";
 import { usePathname } from "next/navigation";
@@ -16,7 +17,11 @@ export default function AdminLayout({ children }) {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-verdigris/5 rounded-full blur-3xl pointer-events-none" />
 
       {!isLoginPage && <SessionGuard />}
-      {!isLoginPage && <AdminSidebar className="z-20 relative" />}
+      {!isLoginPage && (
+        <Suspense fallback={null}>
+          <AdminSidebar className="z-20 relative" />
+        </Suspense>
+      )}
       <main
         className={`flex-1  ${!isLoginPage ? " w-[calc(100vw-256px)] max-h-[calc(100vh-600px)]" : "w-[100vw] "} p-4 md:p-10 lg:p-12 overflow-y-auto min-h-screen relative z-10 custom-scrollbar`}
       >

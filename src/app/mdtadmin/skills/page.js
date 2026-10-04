@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Plus, Pencil, Trash2, Wrench } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SkillModal } from "@/components/admin/skill-modal";
+import { SectionCopy } from "@/components/admin/section-copy";
 
 export default function AdminSkillsPage() {
   const [skills, setSkills] = useState([]);
@@ -83,12 +84,27 @@ export default function AdminSkillsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-display font-bold text-charcoal-blue dark:text-verdigris">
-          Skills Management
+          Skills
         </h1>
         <Button onClick={handleCreate} className="bg-burnt-peach hover:bg-burnt-peach/90 text-white">
           <Plus className="mr-2 h-4 w-4" /> Add Category
         </Button>
       </div>
+
+      <SectionCopy
+        title="Skills text"
+        description="Headings on the Skills tab, and the technology row on the homepage."
+        fields={[
+          { key: "skillsTitle", label: "Heading" },
+          { key: "skillsPageTitle", label: "Page title" },
+          { key: "skillsBody", label: "Intro", long: true },
+          { key: "skillsPageBody", label: "Page intro", long: true },
+          { key: "techEyebrow", label: "Tech eyebrow" },
+          { key: "techTitle", label: "Tech heading" },
+          { key: "techBody", label: "Tech intro", long: true },
+          { key: "techs", label: "Technology names, one per line", long: true, mono: true },
+        ]}
+      />
 
       <div className="grid gap-6 md:grid-cols-2">
         {skills.map((skill) => (

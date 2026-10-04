@@ -53,7 +53,7 @@ BEGIN
       'https://www.linkedin.com/in/muhammad-daniyal-tallat-baa602274/',
       'https://github.com/Daniyal00001',
       'https://github.com/Daniyal00001',
-      '/assets/PDF/CV/Muhammad_Daniyal_Tallat_CV.pdf', -- Keeping asset path as requested
+      '/assets/PDF/CV/Muhammad Daniyal Tallat.pdf', -- Keeping asset path as requested
       '/assets/images/dp.jpg' -- Placeholder, assuming user will upload or has one
     );
   END IF;
