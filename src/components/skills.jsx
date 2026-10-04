@@ -45,16 +45,18 @@ export function Skills({ isPage = false }) {
     )
   }
 
+  const layers = skillCategories.map((cat, index) => ({ cat, index }))
+  const rows = []
+  for (let i = 0; i < layers.length; i += 3) rows.push(layers.slice(i, i + 3))
+
   return (
     <section id="skills" className={isPage ? "relative w-full" : "relative container py-12 md:py-24 lg:py-32"}>
-      {/* Spotlight Background */}
-      <div className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none mix-blend-screen">
-        <div className="w-[800px] h-[800px] bg-primary/10 blur-[140px] rounded-full translate-x-1/3 -translate-y-1/3 text-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-end mix-blend-screen">
+        <div className="h-[800px] w-[800px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 text-transparent blur-[140px]" />
       </div>
-      
-      {/* On /skills the page wrapper already supplies the title. */}
+
       {!isPage && (
-        <div className="relative flex flex-col items-center gap-4 text-center mb-12 z-10">
+        <div className="relative z-10 mb-12 flex flex-col items-center gap-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,49 +73,79 @@ export function Skills({ isPage = false }) {
         </div>
       )}
 
-      <div className="relative grid gap-5 md:grid-cols-2 lg:grid-cols-3 z-10">
-        {skillCategories.map((cat, index) => (
-          <motion.div
-            key={cat.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.06 }}
-            viewport={{ once: true }}
-          >
-            <Card className="group h-full overflow-hidden border border-border bg-card/80 backdrop-blur-xl transition-all duration-300 hover:border-primary/40 hover:shadow-[0_8px_28px_-8px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
-              <CardHeader className="flex flex-row items-end justify-between gap-3 border-b border-border/70 pb-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-primary">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <CardTitle className="mt-1 text-2xl font-display text-foreground">{cat.category}</CardTitle>
+      {layers.length === 0 ? (
+        <div className="relative z-10 py-12 text-center text-muted-foreground">
+          Stay tuned for updates...
+        </div>
+      ) : (
+        <>
+          <div className="relative z-10 lg:hidden">
+            {layers.map(({ cat, index }) => (
+              <React.Fragment key={cat.id}>
+                <div
+                  className="skill-stack-layer sticky"
+                  style={{ top: `calc(4.75rem + ${index} * 12px)`, zIndex: index + 1 }}
+                >
+                  <CategoryCard cat={cat} index={index} />
                 </div>
-                <span className="text-xs text-muted-foreground">{skillEntries(cat).length}</span>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-4">
-                  {skillEntries(cat).map((skill) => (
-                    <li key={skill.name} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      {skill.image ? (
-                        <SkillPicture name={skill.name} image={skill.image} className="h-4 w-4 shrink-0" />
-                      ) : (
-                        <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
-                      )}
-                      <span>{skill.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-
-        {skillCategories.length === 0 && (
-          <div className="col-span-full text-center text-muted-foreground py-12">
-            Stay tuned for updates...
+                {index < layers.length - 1 && <div className="skill-stack-gap h-[max(7rem,calc(100svh-32rem))]" />}
+              </React.Fragment>
+            ))}
+            <div className="skill-stack-gap h-[22vh]" />
           </div>
-        )}
-      </div>
+
+          <div className="relative z-10 hidden lg:block">
+            {rows.map((row, rowIndex) => (
+              <React.Fragment key={row[0].cat.id}>
+                <div
+                  className="skill-stack-layer sticky"
+                  style={{ top: `calc(5rem + ${rowIndex} * 16px)`, zIndex: rowIndex + 1 }}
+                >
+                  <div className="grid grid-cols-3 items-stretch gap-5">
+                    {row.map(({ cat, index }) => (
+                      <CategoryCard key={cat.id} cat={cat} index={index} />
+                    ))}
+                  </div>
+                </div>
+                {rowIndex < rows.length - 1 && <div className="skill-stack-gap h-[clamp(9rem,calc(100svh-30rem),24rem)]" />}
+              </React.Fragment>
+            ))}
+            <div className="skill-stack-gap h-[18vh]" />
+          </div>
+        </>
+      )}
     </section>
+  )
+}
+
+function CategoryCard({ cat, index }) {
+  const entries = skillEntries(cat)
+
+  return (
+    <Card className="h-full overflow-hidden border border-border bg-card shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)]">
+      <CardHeader className="flex flex-row items-end justify-between gap-3 border-b border-border/70 pb-4">
+        <div>
+          <p className="font-mono text-xs tracking-[0.2em] text-primary">
+            {String(index + 1).padStart(2, "0")}
+          </p>
+          <CardTitle className="mt-1 font-display text-2xl text-foreground">{cat.category}</CardTitle>
+        </div>
+        <span className="text-xs text-muted-foreground">{entries.length}</span>
+      </CardHeader>
+      <CardContent className="pt-4">
+        <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-4">
+          {entries.map((skill) => (
+            <li key={skill.name} className="flex items-center gap-2 text-sm text-muted-foreground">
+              {skill.image ? (
+                <SkillPicture name={skill.name} image={skill.image} className="h-4 w-4 shrink-0" />
+              ) : (
+                <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
+              )}
+              <span>{skill.name}</span>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
   )
 }

@@ -415,4 +415,14 @@ body {
   .skill-marquee-track {
     animation: none;
   }
+
+  .skill-stack-layer {
+    position: relative;
+    top: auto !important;
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-stack-gap {
+    display: none;
+  }
 }

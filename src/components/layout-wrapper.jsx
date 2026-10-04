@@ -11,7 +11,7 @@ export default function LayoutWrapper({ children }) {
   return (
     <SiteContentProvider>
       {!isAdmin && <Navbar />}
-      <main className={`flex-1 w-full flex flex-col items-center min-h-screen overflow-hidden`}>
+      <main className={`flex-1 w-full flex flex-col items-center min-h-screen overflow-x-clip`}>
         {children}
       </main>
     </SiteContentProvider>
