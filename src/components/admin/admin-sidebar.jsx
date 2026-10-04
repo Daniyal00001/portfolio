@@ -13,6 +13,7 @@ import {
   User,
   Mail,
   Inbox,
+  GalleryHorizontal,
   FolderKanban,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import { useRouter } from "next/navigation";
 const sidebarItems = [
   { title: "About", href: "/mdtadmin/website?section=about", icon: User },
   { title: "Skills", href: "/mdtadmin/skills", icon: Wrench },
+  { title: "Tech row", href: "/mdtadmin/tech", icon: GalleryHorizontal },
   { title: "Experience", href: "/mdtadmin/experience", icon: Briefcase },
   { title: "Projects", href: "/mdtadmin", icon: FolderKanban },
   { title: "Education", href: "/mdtadmin/education", icon: GraduationCap },

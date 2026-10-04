@@ -17,11 +17,12 @@ export function ImageCropper({
   onCropComplete,
   onCancel,
   loading,
+  defaultAspect,
 }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
-  const [aspect, setAspect] = useState(2 / 1);
+  const [aspect, setAspect] = useState(defaultAspect ?? 2 / 1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   const onCropChange = (crop) => {
@@ -198,7 +199,7 @@ export function ImageCropper({
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="w-[200px]">
+            {defaultAspect == null ? <div className="w-[200px]">
                 <Label className="mb-2 block">Aspect Ratio</Label>
                 <Select
                     value={aspect ? aspect.toString() : "free"}
@@ -218,7 +219,7 @@ export function ImageCropper({
                         <SelectItem value={(3/4).toString()}>3:4 (Portrait)</SelectItem>
                     </SelectContent>
                 </Select>
-            </div>
+            </div> : <p className="text-sm text-muted-foreground">Crop to a square. Every logo is saved at 256×256.</p>}
             <div className="flex gap-2 items-end">
                  <Button variant="outline" onClick={onCancel} disabled={loading}>
                     Cancel

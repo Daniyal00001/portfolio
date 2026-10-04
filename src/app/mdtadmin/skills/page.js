@@ -93,7 +93,7 @@ export default function AdminSkillsPage() {
 
       <SectionCopy
         title="Skills text"
-        description="Headings for Technical Expertise and the moving technology row. Skill names are bullets on the cards. Pictures are only for that moving row."
+        description="Headings for Technical Expertise and the moving technology row. Edit each logo and name under Tech row. Those pictures are cropped to one square size."
         fields={[
           { key: "skillsTitle", label: "Heading" },
           { key: "skillsPageTitle", label: "Page title" },

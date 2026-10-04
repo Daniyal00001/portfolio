@@ -14,7 +14,9 @@ function fallbackSkills() {
 function SkillCard({ name, image }) {
   return (
     <div className="group/card flex h-36 w-44 shrink-0 flex-col items-center justify-center gap-3 rounded-md border border-primary/35 bg-card px-4 py-4 text-center shadow-[0_0_16px_color-mix(in_oklch,var(--primary)_22%,transparent)] transition-transform duration-300 hover:scale-[1.04] hover:border-primary/70 hover:shadow-[0_0_24px_color-mix(in_oklch,var(--primary)_48%,transparent)]">
-      <SkillPicture name={name} image={image} className="h-9 w-9 shrink-0" />
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center">
+        <SkillPicture name={name} image={image} className="h-12 w-12" />
+      </span>
       <span className="text-sm font-medium leading-snug text-foreground">{name}</span>
     </div>
   )
