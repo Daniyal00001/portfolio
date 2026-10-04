@@ -36,7 +36,7 @@ export const DEFAULT_CONTENT = {
     "Production-ready technologies I use across frontend, backend, databases, and deployment.",
   techs: "React\nNext.js\nAngular\nTypeScript\nNode.js\nPython\nDjango\nTailwind\nMySQL\nMongoDB\nRedis\nDocker\nGit",
   skillsTitle: "Technical Expertise",
-  skillsBody: "The stack I build with, and the tools around it. Drag the stack to spin it.",
+  skillsBody: "Languages, interfaces, data, and delivery, grouped the way I actually use them.",
   skillsPageTitle: "Technical Expertise",
   skillsPageBody: "My technical toolkit and proficiency levels across various domains.",
   experienceTitle: "Experience",
@@ -95,6 +95,9 @@ const REPLACED_CONTENT = {
   techTitle: new Set(["Technologies I build with"]),
   techBody: new Set([
     "The tools I reach for in production, across the front end, the back end and everything that ships them.",
+  ]),
+  skillsBody: new Set([
+    "The stack I build with, and the tools around it. Drag the stack to spin it.",
   ]),
   techs: new Set([
     "React\nNext.js\nTypeScript\nJavaScript\nNode.js\nPython\nTailwind\nPostgreSQL\nSupabase\nFirebase\nGit\nFigma",

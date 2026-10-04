@@ -5,9 +5,10 @@ import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Plus, Pencil, Trash2, Wrench } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { SkillModal } from "@/components/admin/skill-modal";
 import { SectionCopy } from "@/components/admin/section-copy";
+import { skillEntries } from "@/lib/skill-entries";
+import { SkillPicture } from "@/lib/skill-icons";
 
 export default function AdminSkillsPage() {
   const [skills, setSkills] = useState([]);
@@ -93,7 +94,7 @@ export default function AdminSkillsPage() {
 
       <SectionCopy
         title="Skills text"
-        description="Headings on the Skills tab, and the technology row on the homepage."
+        description="Headings for Technical Expertise and the technology row. Each skill name and picture is edited on the category below."
         fields={[
           { key: "skillsTitle", label: "Heading" },
           { key: "skillsPageTitle", label: "Page title" },
@@ -102,7 +103,6 @@ export default function AdminSkillsPage() {
           { key: "techEyebrow", label: "Tech eyebrow" },
           { key: "techTitle", label: "Tech heading" },
           { key: "techBody", label: "Tech intro", long: true },
-          { key: "techs", label: "Technology names, one per line", long: true, mono: true },
         ]}
       />
 
@@ -125,11 +125,12 @@ export default function AdminSkillsPage() {
                     </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-2">
-                    {skill.items?.map((item, idx) => (
-                        <Badge key={idx} variant="secondary">
-                            {item}
-                        </Badge>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {skillEntries(skill).map((entry) => (
+                        <div key={entry.name} className="flex items-center gap-2 rounded-md border border-border/70 px-2 py-1.5">
+                            <SkillPicture name={entry.name} image={entry.image} className="h-7 w-7 shrink-0" />
+                            <span className="truncate text-sm">{entry.name}</span>
+                        </div>
                     ))}
                 </div>
             </CardContent>

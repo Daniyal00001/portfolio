@@ -1,111 +1,20 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import {
-  siReact,
-  siNextdotjs,
-  siAngular,
-  siTypescript,
-  siJavascript,
-  siPython,
-  siCplusplus,
-  siHtml5,
-  siCss,
-  siRedux,
-  siVite,
-  siTailwindcss,
-  siNodedotjs,
-  siExpress,
-  siDjango,
-  siFastapi,
-  siMysql,
-  siMongodb,
-  siRedis,
-  siPrisma,
-  siMongoose,
-  siJsonwebtokens,
-  siSocketdotio,
-  siDocker,
-  siGithubactions,
-  siGit,
-  siGithub,
-  siPostman,
-  siShadcnui,
-  siRadixui,
-} from "simple-icons"
 import { supabase } from "@/lib/supabase"
 import { Mydata } from "@/lib/data"
+import { skillEntries } from "@/lib/skill-entries"
+import { SkillPicture } from "@/lib/skill-icons"
 import { useSiteContent } from "@/components/site-content"
 
-const ICONS = {
-  "javascript (es6+)": siJavascript,
-  typescript: siTypescript,
-  python: siPython,
-  "c++": siCplusplus,
-  html5: siHtml5,
-  css3: siCss,
-  "react.js": siReact,
-  "next.js": siNextdotjs,
-  angular: siAngular,
-  redux: siRedux,
-  vite: siVite,
-  "tailwind css": siTailwindcss,
-  "shadcn ui": siShadcnui,
-  "radix ui": siRadixui,
-  "node.js": siNodedotjs,
-  "express.js": siExpress,
-  django: siDjango,
-  "django rest framework": siDjango,
-  fastapi: siFastapi,
-  mysql: siMysql,
-  mongodb: siMongodb,
-  redis: siRedis,
-  "prisma orm": siPrisma,
-  mongoose: siMongoose,
-  "jwt authentication": siJsonwebtokens,
-  "socket.io": siSocketdotio,
-  docker: siDocker,
-  "github actions": siGithubactions,
-  git: siGit,
-  github: siGithub,
-  postman: siPostman,
-}
-
-function isDarkMark(hex) {
-  const value = parseInt(hex, 16)
-  const red = (value >> 16) & 255
-  const green = (value >> 8) & 255
-  const blue = value & 255
-  return (red * 299 + green * 587 + blue * 114) / 1000 < 90
-}
-
 function fallbackSkills() {
-  return Object.values(Mydata.Skills).flat()
+  return Object.values(Mydata.Skills).flat().map((name) => ({ name, image: "" }))
 }
 
-function SkillCard({ name }) {
-  const icon = ICONS[name.toLowerCase()]
-  const dark = icon && isDarkMark(icon.hex)
-
+function SkillCard({ name, image }) {
   return (
     <div className="group/card flex h-36 w-44 shrink-0 flex-col items-center justify-center gap-3 rounded-md border border-primary/35 bg-card px-4 py-4 text-center shadow-[0_0_16px_color-mix(in_oklch,var(--primary)_22%,transparent)] transition-transform duration-300 hover:scale-[1.04] hover:border-primary/70 hover:shadow-[0_0_24px_color-mix(in_oklch,var(--primary)_48%,transparent)]">
-      {icon ? (
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="h-9 w-9 shrink-0 fill-[color:var(--logo)] dark:fill-[color:var(--logo-dark)]"
-          style={{
-            "--logo": `#${icon.hex}`,
-            "--logo-dark": dark ? "#FFFFFF" : `#${icon.hex}`,
-          }}
-        >
-          <path d={icon.path} />
-        </svg>
-      ) : (
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center text-base font-semibold text-primary">
-          {name.slice(0, 1)}
-        </span>
-      )}
+      <SkillPicture name={name} image={image} className="h-9 w-9 shrink-0" />
       <span className="text-sm font-medium leading-snug text-foreground">{name}</span>
     </div>
   )
@@ -114,9 +23,9 @@ function SkillCard({ name }) {
 function SkillRow({ skills, copy }) {
   return (
     <ul className="flex shrink-0 items-center gap-4 pr-4" aria-hidden={copy === 1 ? true : undefined}>
-      {skills.map((name) => (
-        <li key={`${copy}-${name}`}>
-          <SkillCard name={name} />
+      {skills.map((skill) => (
+        <li key={`${copy}-${skill.name}`}>
+          <SkillCard name={skill.name} image={skill.image} />
         </li>
       ))}
     </ul>
@@ -131,11 +40,11 @@ export function TechStack() {
     let cancelled = false
     supabase
       .from("skills")
-      .select("category, items")
+      .select("category, items, entries")
       .order("id", { ascending: true })
       .then(({ data }) => {
         if (cancelled || !data?.length) return
-        const names = data.flatMap((row) => row.items || []).filter(Boolean)
+        const names = data.flatMap((row) => skillEntries(row))
         if (names.length) setSkills(names)
       })
     return () => {

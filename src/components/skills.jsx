@@ -7,8 +7,9 @@ import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Mydata } from "@/lib/data"
+import { skillEntries } from "@/lib/skill-entries"
+import { SkillPicture } from "@/lib/skill-icons"
 import { useSiteContent } from "@/components/site-content"
 
 export function Skills({ isPage = false }) {
@@ -70,27 +71,38 @@ export function Skills({ isPage = false }) {
         </div>
       )}
 
-      <div className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-3 z-10">
+      <div className="relative grid gap-5 md:grid-cols-2 lg:grid-cols-3 z-10">
         {skillCategories.map((cat, index) => (
           <motion.div
             key={cat.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: index * 0.06 }}
             viewport={{ once: true }}
           >
-            <Card className="h-full border border-border hover:shadow-[0_4px_20px_-4px_color-mix(in_oklch,var(--primary)_15%,transparent)] bg-card/80 backdrop-blur-xl transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-display text-foreground">{cat.category}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {cat.items && cat.items.map((skill, i) => (
-                    <Badge key={i} variant="secondary" className="px-3 py-1 bg-background hover:bg-muted transition-colors border border-border/50 text-sm font-normal">
-                      {skill}
-                    </Badge>
-                  ))}
+            <Card className="group h-full overflow-hidden border border-border bg-card/80 backdrop-blur-xl transition-all duration-300 hover:border-primary/40 hover:shadow-[0_8px_28px_-8px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
+              <CardHeader className="flex flex-row items-end justify-between gap-3 border-b border-border/70 pb-4">
+                <div>
+                  <p className="font-mono text-xs tracking-[0.2em] text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <CardTitle className="mt-1 text-2xl font-display text-foreground">{cat.category}</CardTitle>
                 </div>
+                <span className="text-xs text-muted-foreground">{skillEntries(cat).length}</span>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-4">
+                  {skillEntries(cat).map((skill) => (
+                    <li key={skill.name} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      {skill.image ? (
+                        <SkillPicture name={skill.name} image={skill.image} className="h-4 w-4 shrink-0" />
+                      ) : (
+                        <span className="h-1 w-1 shrink-0 rounded-full bg-primary/80" />
+                      )}
+                      <span>{skill.name}</span>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           </motion.div>
